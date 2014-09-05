@@ -45,4 +45,4 @@ gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 
 #user security
-#gem 'devise', '3.3.0'
+gem 'devise', '3.3.0'
