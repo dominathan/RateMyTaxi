@@ -1,11 +1,22 @@
 RateMyTaxi::Application.routes.draw do
 
+  root 'static_pages#home'
 
   resources :users do
     resources :taxis
   end
 
   resources :reviews
+  resources :answers
+
+  #custom route for find_taxi
+  match '/survey/new', to: 'answers#new_answer_review', via: 'get'
+  match '/survey/create', to: 'answers#create_answer_review', via: 'get'
+  match '/survey/create', to: 'answers#create_answer_review', via: 'post'
+
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

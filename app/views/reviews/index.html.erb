@@ -1,22 +1,20 @@
-
-
 <table class='table table-hover'>
   <tr>
-    <th>Driver Full Name</th>
-    <th>Driver ID</th>
-    <th>Taxi Identification Number</th>
+    <th>Questionaire Name</th>
+    <th>ID</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
   <tr>
     <tbody>
-    <% @taxis.each do |taxi| %>
+    <% @reviews.each do |taxi| %>
       <tr>
-        <td><%= taxi.driver_first_name %></td>
-        <td><%= taxi.driver_id %></td>
+        <td><%= taxi.name %></td>
         <td><%= taxi.id %></td>
-        <td><%= link_to 'Show', '#' %></td>
+        <td><%= %></td>
+        <td><%= link_to 'Show', review_path(taxi.id) %></td>
         <td><%= link_to 'Edit', '#' %></td>
         <td><%= link_to 'Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -24,3 +22,5 @@
   </tbody>
   </tr>
 </table>
+
+<%= link_to "New Questionaire", new_review_path %>

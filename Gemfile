@@ -4,7 +4,7 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
-gem 'pg'
+gem 'pg', '0.17.1'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -17,7 +17,7 @@ group :doc do
 end
 
 #----NEW--------
-gem 'figaro'
+gem 'figaro', '0.7.0'
 gem 'will_paginate' #added to have clickiable page numbers at bottom of page
 gem 'will_paginate-bootstrap'
 
@@ -42,7 +42,7 @@ end
 gem 'bootstrap-sass', '3.1.1'
 gem 'sprockets', '2.11.0'
 #gem 'twitter-bootstrap-rails'
-gem 'therubyracer'
+gem 'therubyracer', '0.12.1'
 
 #user security
 #gem 'devise', '3.3.0'

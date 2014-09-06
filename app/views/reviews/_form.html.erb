@@ -1,16 +1,21 @@
-<%= form_for @review do |f| %>
 
-  <div class="control-group">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @review do |f| %>
+
+      <div class="control-group">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <%= f.fields_for :questions do |builder|%>
+        <%= render 'question_fields', f: builder %>
+      <% end %>
+
+      <%= link_to_add_association 'Add Questions', f, :questions, :id => 'add-before' %> <br><br>
+
+      <%= f.submit "Create Review Questionaire", class: 'btn btn-lg btn-primary' %>
+
+    <% end %>
   </div>
-
-  <%= f.fields_for :questions do |builder|%>
-    <%= render 'question_fields', f: builder %>
-  <% end %>
-
-  <%= link_to_add_association 'Add Questions', f, :questions %>
-
-  <%= f.submit "Create Review Questionaire", class: 'btn btn-lg btn-primary' %>
-
-<% end %>
+</div>

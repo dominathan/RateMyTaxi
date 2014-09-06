@@ -4,9 +4,18 @@
   <%= f.text_area :content %><br />
 
   <%= f.label :answer_type, "Select an Answer Type" %>
-  <%= f.text_area :answer_type %>
+  <%= f.select :answer_type, Question::ANSWER_TYPES, include_blank: "Please Select" %>
 
-  <%= link_to_remove_association "Remove Question", f %>
+  <%= link_to_remove_association "Remove Question", f %> <br><br>
 
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#add-before").
+      data("association-insertion-method", 'before').
+      data("association-insertion-node", 'this');
+    });
+
+</script>

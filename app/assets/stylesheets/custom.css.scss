@@ -89,16 +89,13 @@
     padding-top: 25%;
     font-weight: bold;
     line-height: 1;
+    margin-top: 30%;
   }
 
-  #logo:hover {
-    color: #fff;
-    text-decoration: none;
-  }
-
-  .search  {
-    padding-top: 20%;
-    margin-top: 6%;
+  #search-bar  {
+    margin-top: 100px;
+    padding-top: 10%;
+    margin-left: -35%;
   }
 
   .center {
@@ -113,7 +110,8 @@
   .btn {
     background-color: #fff;
     font-size: 1em;
-    margin-top: 50%;
+    margin-top: 10%;
+    margin-right: 34%;
   }
 }
 
