@@ -1,6 +1,6 @@
 RateMyTaxi::Application.routes.draw do
 
-  root "home_pages#home"
+  root "static_pages#home"
 
   resources :users do
     resources :taxis
