@@ -46,3 +46,6 @@ gem 'therubyracer'
 
 #user security
 #gem 'devise', '3.3.0'
+
+#nested_fields for reviews/questions
+gem 'cocoon', '1.2.6'
