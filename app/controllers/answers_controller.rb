@@ -13,8 +13,15 @@ class AnswersController < ApplicationController
   end
 
   def create_answer_review
-    @taxi = Taxi.find(params[:search])
-    @answers = params[:answer]
+    @answers = params[:answers]
+    binding.pry
+    for an in @answers
+      answer = Answer.new
+      answer.content = an['content']
+      answer.taxi_id = an['taxi_id']
+      answer.question_id = an['question_id']
+      answer.save
+    end
     @review = @taxi.user.reviews.last #most recent review? only allow one review? allow user to pick review?
     @questions = @review.questions.to_a.sort
     redirect_to root_path
