@@ -26,6 +26,7 @@ group :development, :test do
   gem 'railroady'
   gem 'pry'
   gem 'jazz_hands'
+  gem 'faker'
 end
 
 group :test do

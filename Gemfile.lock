@@ -74,6 +74,8 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    faker (1.1.2)
+      i18n (~> 0.5)
     ffi (1.9.3)
     figaro (0.7.0)
       bundler (~> 1.0)
@@ -236,6 +238,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise (= 3.3.0)
   factory_girl_rails (= 4.2.1)
+  faker
   figaro (= 0.7.0)
   jazz_hands
   jbuilder (~> 1.2)
