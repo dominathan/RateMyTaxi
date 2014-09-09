@@ -26,7 +26,6 @@ group :development, :test do
   gem 'railroady'
   gem 'pry'
   gem 'jazz_hands'
-  gem 'faker'
 end
 
 group :test do
@@ -50,3 +49,5 @@ gem 'devise', '3.3.0'
 
 #nested_fields for reviews/questions
 gem 'cocoon', '1.2.6'
+
+gem 'faker'
