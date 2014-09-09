@@ -1,5 +1,6 @@
 class Taxi < ActiveRecord::Base
   belongs_to :user
+  has_many :answers
 
   validates :user_id, presence: true
 
@@ -20,6 +21,10 @@ class Taxi < ActiveRecord::Base
       new_taxi.id = idnum
       id_list.push(idnum)
     end
+  end
+
+  def self.full_name(user)
+    [user.driver_first_name, user.driver_last_name].compact.join(" ")
   end
 
 end

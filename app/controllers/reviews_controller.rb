@@ -7,10 +7,10 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-
+    @review.user_id = current_user.id
     if @review.save
       flash[:success] = "Review Questionaire Created"
-      redirect_to reviews_path
+      redirect_to user_taxis_path(current_user)
     else
       render 'new'
     end
@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
-    @questions = @review.questions.all
+    @questions = @review.questions.load
   end
 
   def index

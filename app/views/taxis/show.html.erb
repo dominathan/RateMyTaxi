@@ -1,2 +1,15 @@
-<h1>Taxis#show</h1>
-<p>Find me in app/views/taxis/show.html.erb</p>
+<h1><%= Taxi.full_name(@taxi) %></h1>
+
+<h2> Review Information</h2>
+
+
+
+<table class="table table-hover">
+  <% @answers.each do |ans| %>
+  <tr>
+    <td><%= Question.where(id: ans.question_id).first.content %></td>
+    <td><%= ans.content %></td>
+    <td><%= ans.created_at.strftime("%b %d, %Y") %></td>
+  </tr>
+  <% end %>
+</table>

@@ -11,8 +11,8 @@
     <tbody>
     <% @reviews.each do |taxi| %>
       <tr>
-        <td><%= taxi.name %></td>
-        <td><%= taxi.id %></td>
+        <td><%= review.name %></td>
+        <td><%= review.id %></td>
         <td><%= %></td>
         <td><%= link_to 'Show', review_path(taxi.id) %></td>
         <td><%= link_to 'Edit', '#' %></td>

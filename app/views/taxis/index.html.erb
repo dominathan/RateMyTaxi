@@ -3,8 +3,8 @@
 <table class='table table-hover'>
   <tr>
     <th>Driver Full Name</th>
-    <th>Driver ID</th>
-    <th>Taxi Identification Number</th>
+    <th>Driver's License Number</th>
+    <th>Generated Identification Number</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +13,10 @@
     <tbody>
     <% @taxis.each do |taxi| %>
       <tr>
-        <td><%= taxi.driver_first_name %></td>
+        <td><%= Taxi.full_name(taxi) %></td>
         <td><%= taxi.driver_id %></td>
         <td><%= taxi.id %></td>
-        <td><%= link_to 'Show', '#' %></td>
+        <td><%= link_to 'Show', user_taxi_path(current_user, taxi) %></td>
         <td><%= link_to 'Edit', '#' %></td>
         <td><%= link_to 'Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -24,3 +24,5 @@
   </tbody>
   </tr>
 </table>
+
+<h2><%= link_to "Add Taxi", new_user_taxi_path(current_user) %></h2>

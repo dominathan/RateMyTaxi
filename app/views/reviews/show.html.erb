@@ -11,13 +11,12 @@
   </tr>
   <tr>
     <tbody>
-    <% @questions.each do |taxi| %>
+    <% @questions.each do |question| %>
       <tr>
-        <td><%= taxi.content %></td>
-        <td><%= taxi.answer_type %></td>
-        <td><%= taxi.id%></td>
-        <td><%= link_to 'Show', "#" %></td>
-        <td><%= link_to 'Edit', '#' %></td>
+        <td><%= question.content %></td>
+        <td><%= question.answer_type %></td>
+        <td><%= question.id%></td>
+        <td><%= link_to 'Edit', edit_question_path(question) %></td>
         <td><%= link_to 'Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

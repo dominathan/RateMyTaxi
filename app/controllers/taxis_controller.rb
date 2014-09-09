@@ -25,6 +25,7 @@ class TaxisController < ApplicationController
 
   def show
     @taxi = Taxi.find(params[:id])
+    @answers = Answer.where(taxi_id: @taxi.id).load
   end
 
   def index

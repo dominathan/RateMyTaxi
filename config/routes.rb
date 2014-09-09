@@ -1,12 +1,16 @@
 RateMyTaxi::Application.routes.draw do
 
+
   root 'static_pages#home'
+  devise_for :users
+
 
   resources :users do
+    resources :reviews
     resources :taxis
   end
 
-  resources :reviews
+  resources :questions, only: [:show, :edit, :update]
   resources :answers
 
   #custom route for find_taxi
