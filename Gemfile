@@ -45,7 +45,7 @@ gem 'sprockets', '2.11.0'
 gem 'therubyracer', '0.12.1'
 
 #user security
-#gem 'devise', '3.3.0'
+gem 'devise', '3.3.0'
 
 #nested_fields for reviews/questions
 gem 'cocoon', '1.2.6'

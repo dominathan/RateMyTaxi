@@ -15,7 +15,6 @@ class AnswersController < ApplicationController
 
   def create_answer_review
     @answers = params[:answers]
-    binding.pry
     for an in @answers
       answer = Answer.new
       answer.content = an['content']
@@ -23,7 +22,6 @@ class AnswersController < ApplicationController
       answer.question_id = an['question_id']
       answer.save
     end
-    binding.pry
     redirect_to root_path
   end
 

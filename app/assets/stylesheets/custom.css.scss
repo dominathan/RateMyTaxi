@@ -47,7 +47,7 @@
   }
 
   body {
-    padding-top: -60px;
+    padding-top: 60px;
   }
 
   section {
@@ -56,6 +56,33 @@
 
   textarea {
     resize: vertical;
+  }
+
+  .background-image {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    display: block;
+    background-image: url('http://3.bp.blogspot.com/-aCtNDaTl3_o/TZllEyzreLI/AAAAAAAAASE/Xh0-A54VX5Q/s1600/Taxi+Driver.jpg');
+    width: 100%;
+    height: 650px;
+
+    -webkit-filter: blur(12px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+  }
+
+  .content {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   .center {
@@ -105,6 +132,14 @@
     height: auto !important;
   }
 
+  .search-taxi {
+    margin-left: 40%;
+  }
+  #search-bar {
+    padding-top: 25px;
+    margin-top: 200px;
+  }
+
 
 }
 
@@ -140,7 +175,7 @@
 
   .center_div{
     margin: 0 auto;
-    width: 60%; /* value of your choice which suits your alignment */
+    width: 42%; /* value of your choice which suits your alignment */
   }
 
   .btn {

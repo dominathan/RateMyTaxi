@@ -18,9 +18,9 @@
             <td><%= f.select :content, ["Yes","No"]%> </td>
           <% elsif q.answer_type == "1-5"%>
             <td><%= f.select :content, ['1','2','3','4','5'] %> </td>
-
-          <!-- for taxi_id and question_id on submission -->
           <%end%>
+          <!-- for taxi_id and question_id on submission -->
+
           <div class='hidden'>
             <%= f.hidden_field :taxi_id, :value => params[:search] %>
             <%= f.hidden_field :question_id, :value => q.id %>
