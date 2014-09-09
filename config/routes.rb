@@ -11,9 +11,7 @@ RateMyTaxi::Application.routes.draw do
 
   #custom route for find_taxi
   match '/survey/new', to: 'answers#new_answer_review', via: 'get'
-  match '/survey/create', to: 'answers#create_answer_review', via: 'get'
   match '/survey/create', to: 'answers#create_answer_review', via: 'post'
-
 
 
 

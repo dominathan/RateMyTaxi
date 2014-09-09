@@ -1,14 +1,17 @@
 <h3><%= @review.name %></h3>
-<%= form_tag survey_create_path method: :post do %>
+
+<%= form_tag survey_create_path, method: :post do %>
+
+
   <% for q in @questions %>
     <tr>
       <td><%= q.content %></td>
     </tr>
     <tr>
       <div class='input-group'>
-        <%= form_for @answer do |f| %>
+        <%= fields_for 'answers[]', @answer do |f| %>
           <% if q.answer_type == "Text Response"%>
-            <td><%= f.text_area :content%> </td>
+            <td><%= f.text_area :content %> </td>
           <% elsif q.answer_type == "Number Response"%>
             <td><%= f.text_area :content %> </td>
           <% elsif q.answer_type == "Yes/No"%>
@@ -22,8 +25,9 @@
 
   <% end %>
 
-  <%= submit_tag "Submit Review", name: nil, id: 'submit-review', class: 'btn btn-default' %>
+  <%= submit_tag "Submit Review", name: nil, id: 'search-button', class: 'btn btn-default' %>
 
 <% end %>
+
 
 

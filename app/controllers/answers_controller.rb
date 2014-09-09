@@ -3,17 +3,21 @@ class AnswersController < ApplicationController
   def new_answer_review
     if Taxi.find(params[:search])
       @taxi = Taxi.find(params[:search])
+      @review = @taxi.user.reviews.last #most recent review? only allow one review? allow user to pick review?
+      @questions = @review.questions.to_a.sort
+      @answer = Answer.new
     else
+      flash[:danger] = "Taxi not found. Please use the 6 digit code."
       redirect_to root_path
     end
-    @review = @taxi.user.reviews.last #most recent review? only allow one review? allow user to pick review?
-    @questions = @review.questions.to_a
-    @answer = Answer.new
   end
 
   def create_answer_review
+    @taxi = Taxi.find(params[:search])
     @answers = params[:answer]
-    redirect_to faidls
+    @review = @taxi.user.reviews.last #most recent review? only allow one review? allow user to pick review?
+    @questions = @review.questions.to_a.sort
+    redirect_to root_path
   end
 
   def index
