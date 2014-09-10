@@ -24,6 +24,23 @@ namespace :db do
     end
   end
 
+  desc 'make 1 Review'
+  task populate: :environment do
+    Review.create!(name: 'Sample Review',
+                    user_id: 1)
+  end
+
+  desc 'add 4 questions of each type to Review'
+  task populate: :environment do
+    i = 0
+    4.times do |n|
+      Question.create!(review_id: 1,
+                        content: Faker::Lorem.sentence,
+                        answer_type: Question::ANSWER_TYPES[i])
+      i +=1
+    end
+  end
+
 
 
 

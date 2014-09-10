@@ -2,14 +2,101 @@
 
 <h2> Review Information</h2>
 
-
-
 <table class="table table-hover">
+  <tr>
+    <th>Question</th>
+    <th>Answer</th>
+    <th>Date</th>
+    <th>Time</th>
+  </tr>
   <% @answers.each do |ans| %>
   <tr>
     <td><%= Question.where(id: ans.question_id).first.content %></td>
     <td><%= ans.content %></td>
     <td><%= ans.created_at.strftime("%b %d, %Y") %></td>
+    <td><%= ans.created_at.strftime("%l:%M %p") %></td>
   </tr>
   <% end %>
 </table>
+<div class='col-lg-6 col-lg-offset-3'>
+  <%= form_tag user_taxi_path(current_user,@taxi.id) , method: :get do %>
+    <%= collection_select(:review, :question_id,  Question.numerical_and_yes_no_tables(current_user), :id, :content)%>
+    <div class='col-lg-6 col-lg-offset-3'>
+     <%= submit_tag "Update Graph", name: nil, id: 'individual-graph-update', class: 'btn btn-default btn-primary' %>
+    </div>
+   <% end %>
+</div>
+
+<div id="chartData" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+
+
+  $(function () {
+
+    <% if @categories %>
+      var categories = <%=raw @categories%>
+    <% end %>
+
+    <% if @series_data %>
+      var seriesData = <%=@series_data%>
+    <% end %>
+
+
+    <% if @title %>
+      var title = '<%=@title%>'
+    <% end %>
+
+    <% if @taxi %>
+      var taxi_id = '<%=Taxi.find_by(id: @taxi.id).driver_id%>'
+    <% end %>
+
+
+    $('#chartData').highcharts({
+        chart: {
+            type: 'column'
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: title
+        },
+        subtitle: {
+          text: 'Driver License: '+taxi_id
+        },
+        xAxis: {
+            categories: categories
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Count'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: title,
+            data: seriesData
+
+        }]
+    });
+});
+
+</script>
+
+

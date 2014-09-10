@@ -49,5 +49,5 @@ gem 'devise', '3.3.0'
 
 #nested_fields for reviews/questions
 gem 'cocoon', '1.2.6'
-
-gem 'faker'
+gem 'highcharts-rails', '~> 4.0.1' #for highcharts.js
+gem 'faker' #for fake dummy data

@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require highcharts
+//= require highcharts/modules/exporting
 //= require cocoon
 //= require_tree .
