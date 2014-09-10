@@ -16,11 +16,13 @@ class AnswersController < ApplicationController
   def create_answer_review
     @answers = params[:answers]
     for an in @answers
-      answer = Answer.new
-      answer.content = an['content']
-      answer.taxi_id = an['taxi_id']
-      answer.question_id = an['question_id']
-      answer.save
+      if an['content'] != ""
+        answer = Answer.new
+        answer.content = an['content']
+        answer.taxi_id = an['taxi_id']
+        answer.question_id = an['question_id']
+        answer.save
+      end
     end
     redirect_to root_path
   end
