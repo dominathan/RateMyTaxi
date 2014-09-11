@@ -1,4 +1,4 @@
-
+<h2><%= current_user.company_name %></h2>
 
 <table class='table table-hover'>
   <tr>
@@ -17,8 +17,8 @@
         <td><%= taxi.driver_id %></td>
         <td><%= taxi.id %></td>
         <td><%= link_to 'Show', user_taxi_path(current_user, taxi) %></td>
-        <td><%= link_to 'Edit', '#' %></td>
-        <td><%= link_to 'Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_user_taxi_path(current_user, taxi) %></td>
+        <td><%= link_to 'Destroy', user_taxi_path(current_user, taxi), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

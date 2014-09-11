@@ -1,2 +1,27 @@
-<h1>Taxis#edit</h1>
-<p>Find me in app/views/taxis/edit.html.erb</p>
+
+<div class='container'>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>Update Taxi </h1>
+        <%= form_for @taxi, url: {action: "update"} do |f| %>
+        <table class="table">
+          <tr>
+            <td><%= f.label 'Driver First Name:' %></td>
+            <td><%= f.text_field :driver_first_name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label 'Driver Last Name:' %></td>
+            <td><%= f.text_field :driver_last_name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "Driver's License:" %></td>
+            <td><%= f.text_field :driver_id %></td>
+          </tr>
+
+        </table>
+
+        <%= f.submit "Update Taxi", class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

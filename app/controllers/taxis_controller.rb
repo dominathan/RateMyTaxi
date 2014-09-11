@@ -21,9 +21,17 @@ class TaxisController < ApplicationController
   end
 
   def edit
+    @taxi = Taxi.find(params[:id])
   end
 
   def update
+    @taxi = Taxi.find(params[:id])
+    if @taxi.update_attributes(taxi_params)
+      flash[:success] = "Taxi Updated Successfully"
+      redirect_to user_taxis_path(current_user)
+    else
+      render 'edit'
+    end
   end
 
   def show
@@ -48,10 +56,13 @@ class TaxisController < ApplicationController
   end
 
   def index
-    @taxis = @user.taxis.paginate(:page => params[:page], :per_page => 15)
+    @taxis = @user.taxis.paginate(:page => params[:page], :per_page => 12)
   end
 
   def destroy
+    @taxi = Taxi.find(params[:id])
+    @taxi.destroy
+    redirect_to user_taxis_path(current_user)
   end
 
   private
