@@ -15,7 +15,9 @@
       <%= content_tag(:div, value, class: "alert alert-#{key}") %>
     <% end %>
     <%= yield %>
-     <%= debug(params) if Rails.env.development? %>
+     <%= debug(params) if Rails.env.development? &&
+                        controller.controller_name != 'static_pages' &&
+                        controller.controller_name != 'answers' %>
   </div>
 </body>
 </html>

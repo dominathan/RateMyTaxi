@@ -8,11 +8,12 @@ class AnswersController < ApplicationController
       @questions = @review.questions.to_a.sort
       @answer = Answer.new
     rescue
-      flash[:danger] = "Taxi not found. Please use the 6 digit code."
+      flash[:error] = "Taxi not found. Please use the 6 digit code."
       redirect_to root_path
     end
   end
 
+  #if a reviewer submits answers for a review, only save the answers that have content
   def create_answer_review
     @answers = params[:answers]
     for an in @answers

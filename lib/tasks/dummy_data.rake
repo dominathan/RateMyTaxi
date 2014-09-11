@@ -41,10 +41,10 @@ namespace :db do
     end
   end
 
-  desc 'add 500 answers to different taxis and questions'
+  desc 'add 1000 answers to different taxis and questions'
   task populate: :environment do
     list = Taxi.all.collect(&:id)
-    500.times do |n|
+    1000.times do |n|
       question_id = Random.rand(1..4)
       if question_id == 1
         content = Random.rand(1..5)

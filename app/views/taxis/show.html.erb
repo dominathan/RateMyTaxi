@@ -21,7 +21,9 @@
   <div class='col-lg-4'>
     <%= will_paginate @answers, renderer: BootstrapPagination::Rails %>
   </div>
-  <div class='col-lg-6 col-lg-offset-2'>
+</div>
+<div class="row">
+  <div class='col-lg-6 col-lg-offset-3'>
     <%= form_tag user_taxi_path(current_user,@taxi.id) , method: :get do %>
       <%= collection_select(:review, :question_id,  Question.numerical_and_yes_no_tables(current_user), :id, :content, :include_blank => "Please Select a Question")%>
       <div class='col-lg-6 col-lg-offset-3'>

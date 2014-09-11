@@ -37,7 +37,7 @@ class TaxisController < ApplicationController
   def show
     @taxi = Taxi.find(params[:id])
     @answers = Answer.where(taxi_id: @taxi.id).order('created_at DESC').paginate(
-          :page => params[:page], :per_page => 10)
+                                  :page => params[:page], :per_page => 10)
     begin
       if params[:review][:question_id]
         @question = params[:review][:question_id]
