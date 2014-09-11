@@ -1,0 +1,32 @@
+<%= form_for @taxi, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :user_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :user_id, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :driver_first_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :driver_first_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :driver_last_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :driver_last_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :driver_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :driver_id, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                taxis_path, :class => 'btn' %>
+  </div>
+<% end %>
