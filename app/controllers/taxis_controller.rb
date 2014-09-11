@@ -28,12 +28,13 @@ class TaxisController < ApplicationController
 
   def show
     @taxi = Taxi.find(params[:id])
-    @answers = Answer.where(taxi_id: @taxi.id).load
+    @answers = Answer.where(taxi_id: @taxi.id).order('created_at DESC').paginate(
+          :page => params[:page], :per_page => 10)
     begin
       if params[:review][:question_id]
         @question = params[:review][:question_id]
         if Question.find_by(id: @question).answer_type == '1-5'
-          @categories = ['1','2','3','4','5']
+          @categories = ['1 Rating','2 Rating','3 Rating','4 Rating','5 Rating']
           @series_data = Answer.numerical_histogram(@taxi,@question)
           @title = Question.find_by(id: @question).content
         elsif Question.find_by(id: @question).answer_type == 'Yes/No'
@@ -47,7 +48,7 @@ class TaxisController < ApplicationController
   end
 
   def index
-    @taxis = @user.taxis.all
+    @taxis = @user.taxis.paginate(:page => params[:page], :per_page => 15)
   end
 
   def destroy

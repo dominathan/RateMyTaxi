@@ -15,6 +15,7 @@ class Question < ActiveRecord::Base
     return user.reviews.last.questions.where(answer_type: 'Yes/No').collect!(&:id).uniq
   end
 
+  #return DB tables of yes/no && 1-5 questions
   def self.numerical_and_yes_no_tables(user)
     user.reviews.last.questions.where(answer_type: ['1-5', "Yes/No"]).order(:id)
   end

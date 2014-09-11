@@ -26,3 +26,5 @@
 </table>
 
 <h2><%= link_to "Add Taxi", new_user_taxi_path(current_user) %></h2>
+
+<%= will_paginate @taxis, renderer: BootstrapPagination::Rails %>
