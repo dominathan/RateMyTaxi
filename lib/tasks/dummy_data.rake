@@ -41,7 +41,27 @@ namespace :db do
     end
   end
 
-
+  desc 'add 500 answers to different taxis and questions'
+  task populate: :environment do
+    list = Taxi.all.collect(&:id)
+    500.times do |n|
+      question_id = Random.rand(1..4)
+      if question_id == 1
+        content = Random.rand(1..5)
+      elsif question_id == 2
+        content_choice = ['Yes','No']
+        content = content_choice[Random.rand(0..1)]
+      elsif question_id == 3
+        content = Random.rand(1..90)
+      else
+        content = Faker::Lorem.sentence
+      end
+      taxi_id = list[Random.rand(0..49)]
+      Answer.create!(question_id: question_id,
+                     content: content,
+                     taxi_id: taxi_id)
+    end
+  end
 
 
 
