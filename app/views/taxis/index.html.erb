@@ -16,15 +16,23 @@
         <td><%= Taxi.full_name(taxi) %></td>
         <td><%= taxi.driver_id %></td>
         <td><%= taxi.id %></td>
-        <td><%= link_to 'Show', user_taxi_path(current_user, taxi) %></td>
-        <td><%= link_to 'Edit', edit_user_taxi_path(current_user, taxi) %></td>
-        <td><%= link_to 'Destroy', user_taxi_path(current_user, taxi), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-primary'%></td>
+        <td><%= link_to 'Edit', edit_user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-primary' %></td>
+        <td><%= link_to 'Destroy', user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
   </tr>
 </table>
 
-<h2><%= link_to "Add Taxi", new_user_taxi_path(current_user) %></h2>
-
-<%= will_paginate @taxis, renderer: BootstrapPagination::Rails %>
+<div class="row">
+  <div class='col-lg-4'>
+  <%= will_paginate @taxis, renderer: BootstrapPagination::Rails %>
+  </div>
+  <div class='col-lg-4 col-lg-offset-1'>
+    <div class=''>
+      <%= link_to "Add Taxi", new_user_taxi_path(current_user),
+        :class => 'btn btn-lg btn-primary', :id => 'addtaxi' %>
+    </div>
+  </div>
+</div>
