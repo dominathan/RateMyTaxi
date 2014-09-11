@@ -35,7 +35,7 @@ namespace :db do
     i = 0
     4.times do |n|
       Question.create!(review_id: 1,
-                        content: Faker::Lorem.sentence,
+                        content: "This is Question #{n}",
                         answer_type: Question::ANSWER_TYPES[i])
       i +=1
     end

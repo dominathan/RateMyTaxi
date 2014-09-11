@@ -23,7 +23,7 @@
   </div>
   <div class='col-lg-6 col-lg-offset-2'>
     <%= form_tag user_taxi_path(current_user,@taxi.id) , method: :get do %>
-      <%= collection_select(:review, :question_id,  Question.numerical_and_yes_no_tables(current_user), :id, :content)%>
+      <%= collection_select(:review, :question_id,  Question.numerical_and_yes_no_tables(current_user), :id, :content, :include_blank => "Please Select a Question")%>
       <div class='col-lg-6 col-lg-offset-3'>
        <%= submit_tag "Update Graph", name: nil, id: 'individual-graph-update', class: 'btn btn-default btn-primary' %>
       </div>
