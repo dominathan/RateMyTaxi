@@ -13,13 +13,15 @@ namespace :db do
 
   desc 'add 50 taxi drivers'
   task populate: :environment do
+    o = [('A'..'Z'),(0..9)].map { |i| i.to_a }.flatten
     50.times do |n|
+      license = (0..6).map { o[rand(o.length)] }.join
       driver_first_name = Faker::Name.first_name
       driver_last_name = Faker::Name.last_name
       Taxi.create!(driver_first_name: driver_first_name,
                     driver_last_name: driver_last_name,
                     id: Random.rand(100000..999999),
-                    driver_id: "VA 4HLFSD3",
+                    driver_id: "VA "+license.to_s,
                     user_id: 1)
     end
   end

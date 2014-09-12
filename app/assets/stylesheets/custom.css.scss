@@ -184,6 +184,25 @@ $grayMediumLight: #eaeaea;
     height: auto !important;
   }
 
+  /* Nav Pills */
+
+  .nav-tabs > li.active > a,
+  .nav-tabs > li.active > a:hover,
+  .nav-tabs > li.active > a:focus {
+    color: #ffffff;
+    background-color: #B95315;
+    border: 1px solid #dddddd;
+    border-bottom-color: transparent;
+    cursor: default;
+  }
+
+  .nav-tabs > li > a {
+    color: black;
+    border-right: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+  }
+
+
 
   /* miscellaneous */
 
