@@ -10,14 +10,15 @@ RateMyTaxi::Application.routes.draw do
     resources :taxis
   end
 
-  resources :questions, only: [:show, :edit, :update]
+  resources :questions, only: [:show, :edit, :update, :destroy]
   resources :answers
 
   #custom route for find_taxi
   match '/survey/new', to: 'answers#new_answer_review', via: 'get'
   match '/survey/create', to: 'answers#create_answer_review', via: 'post'
 
-
+  match '/most_reviews/', to: 'taxis#most_reviews', via: 'get'
+  match '/answer_graphs/', to: 'taxis#graphs', via: 'get'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

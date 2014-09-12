@@ -1,0 +1,21 @@
+<h2><%= current_user.company_name %></h2>
+<%= render 'shared/subtabs' %>
+<br>
+
+<table class="table table-hover">
+  <tr>
+    <th># of Reviews Answered</th>
+    <th>Name</th>
+    <th>License</th>
+    <th></th>
+  </tr>
+  <% @top_five.each do |taxi| %>
+    <tr>
+      <td><%= taxi[0] %></td>
+      <td><%=Taxi.full_name(Taxi.find_by(id: taxi[1]))  %></td>
+      <td><%= Taxi.find_by(id: taxi[1]).driver_id %></td>
+      <td><%= link_to "Show", user_taxi_path(current_user, Taxi.find_by(id: taxi[1])),
+                :class => 'btn btn-sm btn-primary' %></td>
+    </tr>
+    <% end %>
+</table>

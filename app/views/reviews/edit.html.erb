@@ -1,17 +1,4 @@
-<div class="container">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for @question, url: {action: "update"} do |f| %>
+<h1>Update Review</h1>
 
-      <div class="control-group">
-        <%= f.label :content %>
-        <%= f.text_field :content %>
+<%= render 'form_update' %>
 
-        <%= f.label :answer_type %>
-        <%= f.select :answer_type, Question::ANSWER_TYPES, include_blank: "Please Select" %>
-      </div>
-
-      <%= f.submit "Update Question", class: 'btn btn-lg btn-primary' %>
-
-    <% end %>
-  </div>
-</div>

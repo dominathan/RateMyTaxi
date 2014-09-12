@@ -81,7 +81,7 @@ $grayMediumLight: #eaeaea;
     z-index: 1;
 
     display: block;
-    background-image: url('http://3.bp.blogspot.com/-aCtNDaTl3_o/TZllEyzreLI/AAAAAAAAASE/Xh0-A54VX5Q/s1600/Taxi+Driver.jpg');
+    background-image: url('/images/TaxiPNG.png');
     width: 100%;
     height: 650px;
 
@@ -174,6 +174,8 @@ $grayMediumLight: #eaeaea;
     color: #ffffff;
   }
 
+  /* MISC */
+
   #addtaxi {
     color:white;
   }
@@ -209,7 +211,7 @@ $grayMediumLight: #eaeaea;
 @media (max-width: 767px) {
 
   body {
-    background: url(http://3.bp.blogspot.com/-aCtNDaTl3_o/TZllEyzreLI/AAAAAAAAASE/Xh0-A54VX5Q/s1600/Taxi+Driver.jpg) no-repeat center fixed;
+    background: url('/images/TaxiPNG.png') no-repeat center fixed;
     background-size: cover;
   }
 

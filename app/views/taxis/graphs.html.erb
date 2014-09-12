@@ -1,0 +1,60 @@
+<h2><%= current_user.company_name %><h2>
+<%= render 'shared/subtabs'%>
+
+<br>
+<br>
+<%= @final_load.length.times do |n| %>
+  <div id='<%= n %>' style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  <script type="text/javascript">
+
+  $(function () {
+
+      var categories = <%=raw @final_load[n][2]%>;
+      var seriesData = <%=@final_load[n][0]%>;
+      var title = '<%=@final_load[n][1]%>';
+
+
+    $('#<%= n%>').highcharts({
+        chart: {
+            type: 'column'
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: title
+        },
+        xAxis: {
+            categories: categories
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Count'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: title,
+            data: seriesData
+
+        }]
+    });
+});
+
+</script>
+
+<% end %>

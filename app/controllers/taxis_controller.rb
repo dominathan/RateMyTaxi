@@ -1,6 +1,6 @@
 class TaxisController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
+  before_action :set_user, only: [:new, :create,:edit,:update,:destroy,:show,:index]
 
   def new
     @taxi = Taxi.new
@@ -63,6 +63,30 @@ class TaxisController < ApplicationController
     @taxi = Taxi.find(params[:id])
     @taxi.destroy
     redirect_to user_taxis_path(current_user)
+  end
+
+  #find taxis that have received the most reviews, and sort them in order 1-5
+  def most_reviews
+    @top_five = Taxi.most_review_answers(current_user)
+  end
+
+  def graphs
+    @final_load = []
+    one_to_5_questions = Question.numerical_ids(current_user)
+    one_to_5_questions.each_with_index do |question, n|
+      series_data = Answer.sum_numerical_histogram(current_user,question)
+      title = Question.find_by(id: question).content
+      categories = ['1 Rating','2 Rating','3 Rating','4 Rating','5 Rating']
+      @final_load << [series_data, title, categories]
+    end
+    yes_no_questions = Question.yes_no_ids(current_user)
+    yes_no_questions.each_with_index do |question, n|
+      series_data = Answer.sum_yes_no_histogram(current_user,question)
+      title = Question.find_by(id: question).content
+      categories = ['Yes','No']
+      @final_load << [series_data, title, categories]
+    end
+    @final_load
   end
 
   private

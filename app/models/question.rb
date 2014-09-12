@@ -20,4 +20,16 @@ class Question < ActiveRecord::Base
     user.reviews.last.questions.where(answer_type: ['1-5', "Yes/No"]).order(:id)
   end
 
+  def self.numerical_ids(user)
+    user.reviews.last.questions.where(answer_type: ['1-5']).collect(&:id)
+  end
+
+  def self.yes_no_ids(user)
+    user.reviews.last.questions.where(answer_type: ['Yes/No']).collect(&:id)
+  end
+
+
+
+
+
 end

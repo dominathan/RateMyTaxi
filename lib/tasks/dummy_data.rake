@@ -26,33 +26,35 @@ namespace :db do
 
   desc 'make 1 Review'
   task populate: :environment do
-    Review.create!(name: 'Sample Review',
+    Review.create!(name: 'Cville Cab Review',
                     user_id: 1)
   end
 
   desc 'add 4 questions of each type to Review'
   task populate: :environment do
-    i = 0
-    4.times do |n|
-      Question.create!(review_id: 1,
-                        content: "This is Question #{n}",
-                        answer_type: Question::ANSWER_TYPES[i])
-      i +=1
-    end
+    Question.create!(review_id: 1,
+                      content: "How would you rate your overall taxi experience (5 being the highest)?",
+                      answer_type: '1-5')
+    Question.create!(review_id: 1,
+                      content: "Did you make it to your destination on time?",
+                      answer_type: 'Yes/No')
+    Question.create!(review_id: 1,
+                      content: "Anything else you would like to add?",
+                      answer_type: 'Text Response')
   end
 
   desc 'add 1000 answers to different taxis and questions'
   task populate: :environment do
     list = Taxi.all.collect(&:id)
     1000.times do |n|
-      question_id = Random.rand(1..4)
+      question_id = Random.rand(1..3)
       if question_id == 1
         content = Random.rand(1..5)
       elsif question_id == 2
         content_choice = ['Yes','No']
         content = content_choice[Random.rand(0..1)]
       elsif question_id == 3
-        content = Random.rand(1..90)
+        content = Faker::Lorem.sentence
       else
         content = Faker::Lorem.sentence
       end

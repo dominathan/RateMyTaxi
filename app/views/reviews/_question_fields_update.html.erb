@@ -1,0 +1,21 @@
+<div class='nested-fields'>
+
+  <%= f.label :content, "Question" %><br />
+  <%= f.text_area :content %><br />
+
+  <%= f.label :answer_type, "Select an Answer Type" %>
+  <%= f.select :answer_type, Question::ANSWER_TYPES, include_blank: "Please Select" %>
+
+
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#add-before").
+      data("association-insertion-method", 'before').
+      data("association-insertion-node", 'this');
+    });
+
+</script>
+

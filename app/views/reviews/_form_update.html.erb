@@ -1,0 +1,21 @@
+
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @review, url: {action: "update"} do |f| %>
+
+      <div class="control-group">
+        <%= f.label :name  %>
+        <%= f.text_field :name %>
+      </div>
+
+      <%= f.fields_for :questions do |builder|%>
+        <%= render 'question_fields_update', f: builder %>
+      <% end %>
+
+      <%= link_to_add_association 'Add Questions', f, :questions, :id => 'add-before' %> <br><br>
+
+      <%= f.submit "Update Review", class: 'btn btn-lg btn-primary'  %>
+
+    <% end %>
+  </div>
+</div>

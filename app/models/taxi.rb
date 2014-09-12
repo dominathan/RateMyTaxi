@@ -27,4 +27,13 @@ class Taxi < ActiveRecord::Base
     [user.driver_first_name, user.driver_last_name].compact.join(" ")
   end
 
+  def self.most_review_answers(user)
+    taxi_list = user.taxis.collect!(&:id)
+    total_count = []
+    for taxi in taxi_list
+      total_count << Answer.where(taxi_id: taxi).count
+    end
+    taxi_sorted_by_total_answers = total_count.zip(taxi_list).sort
+    return taxi_sorted_by_total_answers.last(5).reverse
+  end
 end

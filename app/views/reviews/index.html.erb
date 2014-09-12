@@ -1,6 +1,7 @@
+<h2><%= current_user.company_name %> Reviews</h2>
 <table class='table table-hover'>
   <tr>
-    <th>Questionaire Name</th>
+    <th>Review Name</th>
     <th>ID</th>
     <th></th>
     <th></th>
@@ -9,18 +10,22 @@
   </tr>
   <tr>
     <tbody>
-    <% @reviews.each do |taxi| %>
-      <tr>
-        <td><%= review.name %></td>
-        <td><%= review.id %></td>
-        <td><%= %></td>
-        <td><%= link_to 'Show', review_path(taxi.id) %></td>
-        <td><%= link_to 'Edit', '#' %></td>
-        <td><%= link_to 'Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+      <% if @reviews.empty? %>
+        <p> You Must <%= link_to "Create Review", new_user_review_path(current_user), :class => 'btn btn-lg btn-primary' %>
+      <% else %>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td><%= review.name %></td>
+            <td><%= review.id %></td>
+            <td><%= %></td>
+            <td><%= link_to 'Show', user_review_path(current_user, review), :class=>'btn btn-sm btn-primary' %></td>
+            <td><%= link_to 'Edit', "#", :class => 'btn btn-sm btn-primary' %></td>
+            <td><%= link_to 'Destroy', user_review_path(current_user, review), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn-danger' %></td>
+          </tr>
+        <% end %>
+      <% end %>
   </tbody>
   </tr>
 </table>
 
-<%= link_to "New Questionaire", new_review_path %>
+
