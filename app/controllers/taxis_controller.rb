@@ -38,21 +38,22 @@ class TaxisController < ApplicationController
     @taxi = Taxi.find(params[:id])
     @answers = Answer.where(taxi_id: @taxi.id).order('created_at DESC').paginate(
                                   :page => params[:page], :per_page => 10)
-    begin
-      if params[:review][:question_id]
-        @question = params[:review][:question_id]
-        if Question.find_by(id: @question).answer_type == '1-5'
-          @categories = ['1 Rating','2 Rating','3 Rating','4 Rating','5 Rating']
-          @series_data = Answer.numerical_histogram(@taxi,@question)
-          @title = Question.find_by(id: @question).content
-        elsif Question.find_by(id: @question).answer_type == 'Yes/No'
-          @categories = ['Yes','No']
-          @series_data = Answer.yes_no_histogram(@taxi,@question)
-          @title = Question.find_by(id: @question).content
-        end
-      end
-    rescue
+    @final_load = []
+    one_to_5_questions = Question.numerical_ids(current_user)
+    one_to_5_questions.each_with_index do |question, n|
+      series_data = Answer.numerical_histogram(@taxi.id,question)
+      title = Question.find_by(id: question).content
+      categories = ['1 Rating','2 Rating','3 Rating','4 Rating','5 Rating']
+      @final_load << [series_data, title, categories]
     end
+    yes_no_questions = Question.yes_no_ids(current_user)
+    yes_no_questions.each_with_index do |question, n|
+      series_data = Answer.yes_no_histogram(@taxi.id,question)
+      title = Question.find_by(id: question).content
+      categories = ['Yes','No']
+      @final_load << [series_data, title, categories]
+    end
+    @final_load
   end
 
   def index

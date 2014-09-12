@@ -25,89 +25,66 @@
     <%= will_paginate @answers, renderer: BootstrapPagination::Rails %>
   </div>
 </div>
-<div class="row">
-  <div class='col-lg-6 col-lg-offset-3'>
-    <%= form_tag user_taxi_path(current_user,@taxi.id) , method: :get do %>
-      <%= collection_select(:review, :question_id,  Question.numerical_and_yes_no_tables(current_user), :id, :content, :include_blank => "Please Select a Question")%>
-      <div class='col-lg-6 col-lg-offset-3'>
-       <%= submit_tag "Update Graph", name: nil, id: 'individual-graph-update', class: 'btn btn-default btn-primary' %>
-      </div>
-     <% end %>
-  </div>
-
-</div>
 <br>
 <br>
-<div id="chartData" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
-<script type="text/javascript">
+<%= @final_load.length.times do |n| %>
 
+  <div id="<%= n %>" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
+  <script type="text/javascript">
 
-  $(function () {
+    $(function () {
 
-    <% if @categories %>
-      var categories = <%=raw @categories%>
-    <% end %>
+      var taxi_id = '<%= raw @taxi.driver_id %>'
+      var categories = <%=raw @final_load[n][2]%>;
+      var seriesData = <%=@final_load[n][0]%>;
+      var title = '<%=@final_load[n][1]%>';
 
-    <% if @series_data %>
-      var seriesData = <%=@series_data%>
-    <% end %>
+      $('#<%= n %>').highcharts({
+          chart: {
+              type: 'column'
+          },
+          credits: {
+              enabled: false
+          },
+          title: {
+              text: title
+          },
+          subtitle: {
+            text: "Driver's License: "+taxi_id
+          },
+          xAxis: {
+              categories: categories
+          },
+          yAxis: {
+              min: 0,
+              title: {
+                  text: 'Count'
+              }
+          },
+          tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                  '<td style="padding:0"><b>{point.y} </b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+          },
+          plotOptions: {
+              column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+              }
+          },
+          series: [{
+              name: title,
+              data: seriesData
 
+          }]
+      });
+  });
 
-    <% if @title %>
-      var title = '<%=@title%>'
-    <% end %>
+  </script>
 
-    <% if @taxi %>
-      var taxi_id = '<%=Taxi.find_by(id: @taxi.id).driver_id%>'
-    <% end %>
-
-
-    $('#chartData').highcharts({
-        chart: {
-            type: 'column'
-        },
-        credits: {
-            enabled: false
-        },
-        title: {
-            text: title
-        },
-        subtitle: {
-          text: 'Driver License: '+taxi_id
-        },
-        xAxis: {
-            categories: categories
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Count'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y} </b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: title,
-            data: seriesData
-
-        }]
-    });
-});
-
-</script>
-
-
+<% end %>
