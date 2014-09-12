@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
 
   def new_answer_review
     begin
-      Taxi.find(params[:search]) #need to look at try and catch, throughs and error on taxi.find if not ther
+      Taxi.find(params[:search])
       @taxi = Taxi.find(params[:search])
       @review = @taxi.user.reviews.last #most recent review? only allow one review? allow user to pick review?
       @questions = @review.questions.to_a.sort
@@ -13,7 +13,7 @@ class AnswersController < ApplicationController
     end
   end
 
-  #if a reviewer submits answers for a review, only save the answers that have content
+  #if a reviewer submits answers, only save the answers that have content
   def create_answer_review
     @answers = params[:answers]
     for an in @answers

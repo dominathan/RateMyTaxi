@@ -25,7 +25,7 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
-    @questions = @review.questions.load
+    @questions = @review.questions.order(:id).load
   end
 
   def index
