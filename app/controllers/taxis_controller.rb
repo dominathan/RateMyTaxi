@@ -6,6 +6,8 @@ class TaxisController < ApplicationController
     @taxi = Taxi.new
   end
 
+  #call Taxi.set_taxi_id to generate unique identifier for potential
+    #reviewers to enter on home screen to leave a review
   def create
     @taxi = Taxi.new(taxi_params)
     @taxi.user_id = @user.id
@@ -14,7 +16,7 @@ class TaxisController < ApplicationController
       current_user.taxi_count += 1
       current_user.save
       flash[:success] = "Taxi Added Successfully"
-      redirect_to user_taxis_path(@user.id)
+      redirect_to user_taxis_path(current_user)
     else
       render 'new'
     end
@@ -34,6 +36,10 @@ class TaxisController < ApplicationController
     end
   end
 
+  #shows all answers that reference taxi_id
+  #All User Questions with either 1-5 or Yes/No answer types
+    #are generated as bar graphs, summing the counts of the answers
+    #and displaying them individually by taxi
   def show
     @taxi = Taxi.find(params[:id])
     @answers = Answer.where(taxi_id: @taxi.id).order('created_at DESC').paginate(
@@ -71,6 +77,9 @@ class TaxisController < ApplicationController
     @top_five = Taxi.most_review_answers(current_user)
   end
 
+  #All User Questions with either 1-5 or Yes/No answer types
+    #are generated as bar graphs, summing the counts of the answers
+    #and displaying them in aggregate for all taxis
   def graphs
     @final_load = []
     one_to_5_questions = Question.numerical_ids(current_user)

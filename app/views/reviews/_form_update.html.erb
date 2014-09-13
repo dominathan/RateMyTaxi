@@ -8,11 +8,13 @@
         <%= f.text_field :name %>
       </div>
 
-      <%= f.fields_for :questions do |builder|%>
+      <%= f.fields_for :questions, @questions  do |builder|%>
         <%= render 'question_fields_update', f: builder %>
       <% end %>
 
-      <%= link_to_add_association 'Add Questions', f, :questions, :id => 'add-before' %> <br><br>
+
+      <%= link_to_add_association 'Add A Question', f, :questions, :id => 'add-before',
+          :class => 'btn btn-sm btn-primary' %> <br><br>
 
       <%= f.submit "Update Review", class: 'btn btn-lg btn-primary'  %>
 

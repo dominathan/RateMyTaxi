@@ -1,16 +1,34 @@
 <div class="container">
   <div class="row">
     <ul class="nav nav-tabs nav-justified" role="tablist">
-      <li class="<%=is_active_tab?('taxis','index')%>">
-        <%= link_to "All Taxis", user_taxis_path(current_user) %>
-      </li>
-      <li class="<%=is_active_tab?('taxis','most_reviews')%>">
-        <%= link_to 'Most Reviews', most_reviews_path %>
-      </li>
-      <li class=""><a href="#">Best Reviews</a></li>
-      <li class="<%=is_active_tab?('taxis','graphs')%>">
-        <%= link_to "Review Totals (Graphs)", answer_graphs_path %>
-      </li>
+
+      <% if controller.controller_name == "taxis" %>
+
+        <li class="<%=is_active_tab?('taxis','index')%>">
+          <%= link_to "All Taxis", user_taxis_path(current_user) %>
+        </li>
+        <li class="<%=is_active_tab?('taxis','most_reviews')%>">
+          <%= link_to 'Most Reviews', most_reviews_path %>
+        </li>
+        <li class=""><a href="#">Best Reviews</a></li>
+        <li class="<%=is_active_tab?('taxis','graphs')%>">
+          <%= link_to "Review Totals (Graphs)", answer_graphs_path %>
+        </li>
+
+      <% elsif controller.controller_name == 'reviews' %>
+
+        <li class="<%=is_active_tab?('reviews','show')%>">
+          <%= link_to "Show Questions", user_review_path(current_user,@review) %>
+        </li>
+        <li class="<%=is_active_tab?('reviews','edit')%>">
+          <%= link_to 'Add Questions', edit_user_review_path(current_user,@review) %>
+        </li>
+        <li class="<%=is_active_tab?('reviews','new')%>">
+          <%= link_to "New Review", new_user_review_path(current_user) %>
+        </li>
+
+      <% end %>
+
     </ul>
   </div>
 </div>

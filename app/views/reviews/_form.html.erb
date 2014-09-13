@@ -12,7 +12,8 @@
         <%= render 'question_fields', f: builder %>
       <% end %>
 
-      <%= link_to_add_association 'Add Questions', f, :questions, :id => 'add-before' %> <br><br>
+      <%= link_to_add_association 'Add Questions', f, :questions, :id => 'add-before',
+          :class => 'btn btn-sm btn-primary' %> <br><br>
 
       <%= f.submit "Create Review Questionaire", class: 'btn btn-lg btn-primary' %>
 

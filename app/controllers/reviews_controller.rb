@@ -20,6 +20,7 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    @questions = @review.questions.order(:id)
   end
 
   def update

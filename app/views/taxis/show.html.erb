@@ -34,7 +34,13 @@
 
   <script type="text/javascript">
 
+    Highcharts.setOptions({
+      colors: ['#1A5E94']
+    });
+
     $(function () {
+
+
 
       var taxi_id = '<%= raw @taxi.driver_id %>'
       var categories = <%=raw @final_load[n][2]%>;

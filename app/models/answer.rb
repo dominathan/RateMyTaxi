@@ -16,7 +16,8 @@ class Answer < ActiveRecord::Base
             all_answer_for_taxi.where(content: 'No').count]
   end
 
-  #for all question and answer data...1-5 questions
+  #Generate all answer data of a particular question...yes no questions
+    #used in bar chart
   def self.sum_numerical_histogram(user,question_id)
     taxi_list = user.taxis.collect!(&:id)
     all_answers_for_company = Answer.where(question_id: question_id, taxi_id: taxi_list)
@@ -25,7 +26,8 @@ class Answer < ActiveRecord::Base
             all_answers_for_company.where(content: '5').count]
   end
 
-  #for all question and answer data...yes no questions
+  #Generate all answer data of a particular question...yes no questions
+    #used in bar chart
   def self.sum_yes_no_histogram(user,question_id)
     taxi_list = user.taxis.collect!(&:id)
     all_answers_for_company = Answer.where(question_id: question_id, taxi_id: taxi_list)

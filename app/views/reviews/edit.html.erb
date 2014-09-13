@@ -1,4 +1,6 @@
-<h1>Update Review</h1>
+<h2>Update <%= @review.name %>| <%= current_user.company_name ? current_user.company_name : "" %></h2>
+
+<%= render 'shared/subtabs' %>
 
 <%= render 'form_update' %>
 
