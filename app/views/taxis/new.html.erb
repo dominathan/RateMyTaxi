@@ -6,6 +6,7 @@
     <div class="col-md-6 col-md-offset-3">
       <h2> Add Taxi </h2>
         <%= form_for @taxi, url: {action: "create"} do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
         <table class="table">
           <tr>
             <td><%= f.label 'Driver First Name:' %></td>

@@ -3,7 +3,7 @@
 <div class="container">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for @question, url: {action: "update"} do |f| %>
-
+      <%= render 'shared/error_messages', object: f.object %>
       <div class="control-group">
         <%= f.label :content %>
         <%= f.text_field :content %>

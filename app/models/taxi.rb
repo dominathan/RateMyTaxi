@@ -3,6 +3,9 @@ class Taxi < ActiveRecord::Base
   has_many :answers
 
   validates :user_id, presence: true
+  validates :driver_id, presence: true
+  validates :driver_first_name, presence: true
+  validates :driver_last_name, presence: true
 
 
 

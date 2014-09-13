@@ -48,6 +48,11 @@ class ReviewsController < ApplicationController
     redirect_to user_review_path(current_user, @review)
   end
 
+  def remove_question
+    @review = Review.find(params[:id])
+
+  end
+
   private
 
     def set_user
