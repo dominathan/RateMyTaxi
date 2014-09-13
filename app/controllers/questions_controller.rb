@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     Question.find(params[:id]).destroy
-    redirect_to user_reviews_path(current_user)
+    redirect_to user_review_path(current_user, current_user.reviews.last)
   end
 
 
