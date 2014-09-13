@@ -2,14 +2,17 @@
 <%= render 'shared/subtabs' %>
 <br>
 
-<table class="table table-hover">
+<table id="mostReviews" class="display" cellspacing="0" width="100%">
+  <thead>
   <tr>
     <th># of Reviews Answered</th>
     <th>Name</th>
     <th>License</th>
     <th></th>
   </tr>
-  <% @top_five.each do |taxi| %>
+  </thead>
+  <tbody>
+  <% @top_five.reverse.each do |taxi| %>
     <tr>
       <td><%= taxi[0] %></td>
       <td><%=Taxi.full_name(Taxi.find_by(id: taxi[1]))  %></td>
@@ -18,4 +21,13 @@
                 :class => 'btn btn-sm btn-primary' %></td>
     </tr>
     <% end %>
+  </tbody>
 </table>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#mostReviews').dataTable({
+      "order": [[0, 'desc']]
+    });
+  });
+</script>

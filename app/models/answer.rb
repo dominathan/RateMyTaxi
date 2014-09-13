@@ -1,6 +1,5 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
-  belongs_to :answer
 
   #for bar chart of indiviudal taxis with question.answer_types = '1-5'
   def self.numerical_histogram(taxi_id,question_id)
@@ -33,6 +32,13 @@ class Answer < ActiveRecord::Base
     all_answers_for_company = Answer.where(question_id: question_id, taxi_id: taxi_list)
     return [all_answers_for_company.where(content: 'Yes').count,
             all_answers_for_company.where(content: 'No').count]
+  end
+
+  def self.all_text_responses(user)
+    taxi_list = user.taxis.collect!(&:id)
+    questions_with_text_responses = user.questions.where(answer_type: "Text Response")
+    text_responses_list = Answer.where(question_id: questions_with_text_responses,
+                                      taxi_id: taxi_list).load
   end
 
 

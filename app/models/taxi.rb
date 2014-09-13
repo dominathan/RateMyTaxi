@@ -34,6 +34,6 @@ class Taxi < ActiveRecord::Base
       total_count << Answer.where(taxi_id: taxi).count
     end
     taxi_sorted_by_total_answers = total_count.zip(taxi_list).sort
-    return taxi_sorted_by_total_answers.last(5).reverse
+    return taxi_sorted_by_total_answers
   end
 end

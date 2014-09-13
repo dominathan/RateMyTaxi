@@ -13,7 +13,11 @@ class TaxisController < ApplicationController
     @taxi.user_id = @user.id
     Taxi.set_taxi_id(Taxi::IDLIST, @taxi)
     if @taxi.save
-      current_user.taxi_count += 1
+      if current_user.taxi_count == nil
+        current_user.taxi_count =1
+      else
+        current_user.taxi_count += 1
+      end
       current_user.save
       flash[:success] = "Taxi Added Successfully"
       redirect_to user_taxis_path(current_user)
@@ -63,12 +67,17 @@ class TaxisController < ApplicationController
   end
 
   def index
-    @taxis = @user.taxis.paginate(:page => params[:page], :per_page => 12)
+    @taxis = @user.taxis.load
   end
 
   def destroy
     @taxi = Taxi.find(params[:id])
     @taxi.destroy
+    begin
+      current_user.taxi_count -= 1
+    rescue
+      'nothign to see here'
+    end
     redirect_to user_taxis_path(current_user)
   end
 
@@ -97,6 +106,10 @@ class TaxisController < ApplicationController
       @final_load << [series_data, title, categories]
     end
     @final_load
+  end
+
+  def comments
+    @text_answers = Answer.all_text_responses(current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 22)
   end
 
   private

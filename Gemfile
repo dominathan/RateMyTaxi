@@ -50,3 +50,4 @@ gem 'devise', '3.3.0'
 gem 'cocoon', '1.2.6'
 gem 'highcharts-rails', '~> 4.0.1' #for highcharts.js
 gem 'faker' #for fake dummy data
+gem 'jquery-datatables-rails'

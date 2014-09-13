@@ -1,0 +1,32 @@
+<h2>All Review Comments | <%= current_user.company_name ? current_user.company_name : "" %></h2>
+
+<%= render 'shared/subtabs' %>
+
+<table id="allComments" class="display" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Taxi ID</th>
+      <th>Answer</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%  @text_answers.each do |comment|  %>
+      <tr>
+        <td><%=Question.find_by(id: comment.question_id).content%></td>
+        <td><%=Taxi.find_by(id: comment.taxi_id).driver_id%></td>
+        <td><%=comment.content%></td>
+        <td><%=comment.created_at.strftime("%D | %l:%M %p")%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#allComments').dataTable({
+      order: [[3,'desc']]
+    });
+  });
+</script>

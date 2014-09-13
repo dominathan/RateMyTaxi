@@ -1,36 +1,41 @@
-
-
-
 <h2><%= @taxi.driver_id %> Review Information</h2>
 
-
-<table class="table table-hover">
-  <tr>
-    <th>Question</th>
-    <th>Answer</th>
-    <th>Date</th>
-    <th>Time</th>
-  </tr>
-  <% @answers.each do |ans| %>
-  <tr>
-    <td><%= Question.where(id: ans.question_id).first.content %></td>
-    <td><%= ans.content %></td>
-    <td><%= ans.created_at.strftime("%b %d, %Y") %></td>
-    <td><%= ans.created_at.strftime("%l:%M %p") %></td>
-  </tr>
-  <% end %>
+<table id="individualTaxi" class="display" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Date</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @answers.each do |ans| %>
+    <tr>
+      <td><%= Question.where(id: ans.question_id).first.content %></td>
+      <td><%= ans.content %></td>
+      <td><%= ans.created_at.strftime("%b %d, %Y") %></td>
+      <td><%= ans.created_at.strftime("%l:%M %p") %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
-<div class="row">
-  <div class='col-lg-4'>
-    <%= will_paginate @answers, renderer: BootstrapPagination::Rails %>
-  </div>
-</div>
+
 <br>
 <br>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#individualTaxi').dataTable();
+  });
+</script>
 
 <%= @final_load.length.times do |n| %>
 
   <div id="<%= n %>" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+
 
   <script type="text/javascript">
 

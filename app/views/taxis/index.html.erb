@@ -1,10 +1,9 @@
-
 <h2><%= current_user.company_name %></h2>
 
 <%= render 'shared/subtabs' %>
 
-
-<table class='table table-hover'>
+<table table id="allTaxis" class="display" cellspacing="0" width="100%">
+  <thead>
   <tr>
     <th>Driver Full Name</th>
     <th>Driver's License Number</th>
@@ -13,8 +12,8 @@
     <th></th>
     <th></th>
   </tr>
-  <tr>
-    <tbody>
+  </thead>
+  <tbody>
     <% @taxis.each do |taxi| %>
       <tr>
         <td><%= Taxi.full_name(taxi) %></td>
@@ -26,17 +25,19 @@
       </tr>
     <% end %>
   </tbody>
-  </tr>
 </table>
 
 <div class="row">
-  <div class='col-lg-4'>
-  <%= will_paginate @taxis, renderer: BootstrapPagination::Rails %>
-  </div>
-  <div class='col-lg-4 col-lg-offset-1'>
+  <div class='col-lg-6 col-lg-offset-5'>
     <div class=''>
       <%= link_to "Add Taxi", new_user_taxi_path(current_user),
         :class => 'btn btn-lg btn-primary', :id => 'addtaxi' %>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#allTaxis').dataTable();
+  });
+</script>

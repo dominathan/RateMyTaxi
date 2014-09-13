@@ -1,8 +1,9 @@
-
+<h2><%= current_user.company_name%></h2>
+<%= render 'shared/subtabs' %>
 <div class='container'>
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <h1>Update Taxi </h1>
+    <div class="col-md-6 col-md-offset-3">
+        <h2>Update Taxi </h2>
         <%= form_for @taxi, url: {action: "update"} do |f| %>
         <table class="table">
           <tr>
@@ -17,7 +18,6 @@
             <td><%= f.label "Driver's License:" %></td>
             <td><%= f.text_field :driver_id %></td>
           </tr>
-
         </table>
 
         <%= f.submit "Update Taxi", class: "btn btn-large btn-primary" %>
