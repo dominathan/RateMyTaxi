@@ -108,7 +108,7 @@ class TaxisController < ApplicationController
   end
 
   def comments
-    @text_answers = Answer.all_text_responses(current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 22)
+    @text_answers = Answer.all_text_responses(current_user).order('created_at DESC')
   end
 
   private

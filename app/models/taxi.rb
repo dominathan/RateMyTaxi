@@ -30,6 +30,7 @@ class Taxi < ActiveRecord::Base
     [user.driver_first_name, user.driver_last_name].compact.join(" ")
   end
 
+  #return list of taxis with number of answers received
   def self.most_review_answers(user)
     taxi_list = user.taxis.collect!(&:id)
     total_count = []
@@ -39,4 +40,5 @@ class Taxi < ActiveRecord::Base
     taxi_sorted_by_total_answers = total_count.zip(taxi_list).sort
     return taxi_sorted_by_total_answers
   end
+
 end

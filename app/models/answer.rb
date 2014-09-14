@@ -34,6 +34,7 @@ class Answer < ActiveRecord::Base
             all_answers_for_company.where(content: 'No').count]
   end
 
+  #list all comments generated for a cab company(user)
   def self.all_text_responses(user)
     taxi_list = user.taxis.collect!(&:id)
     questions_with_text_responses = user.questions.where(answer_type: "Text Response")
