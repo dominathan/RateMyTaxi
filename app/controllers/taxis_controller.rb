@@ -46,8 +46,7 @@ class TaxisController < ApplicationController
     #and displaying them individually by taxi
   def show
     @taxi = Taxi.find(params[:id])
-    @answers = Answer.where(taxi_id: @taxi.id).order('created_at DESC').paginate(
-                                  :page => params[:page], :per_page => 10)
+    @answers = Answer.where(taxi_id: @taxi.id).order('created_at DESC')
     @final_load = []
     one_to_5_questions = Question.numerical_ids(current_user)
     one_to_5_questions.each_with_index do |question, n|

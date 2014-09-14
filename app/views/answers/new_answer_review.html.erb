@@ -1,6 +1,6 @@
 <div class='container'>
   <div class="col-sm-6 col-sm-offset-3">
-    <div class="survey">
+    <div class="content survey">
     <h3><%= @review.name %></h3>
 
     <%= form_tag survey_create_path, method: :post do %>
@@ -28,13 +28,14 @@
                 <%= f.hidden_field :taxi_id, :value => params[:search] %>
                 <%= f.hidden_field :question_id, :value => q.id %>
               </div>
-            </div>
+          </div>
           <% end %>
         </tr>
+        <br>
 
       <% end %>
 
-      <%= submit_tag "Submit Review", name: nil, id: 'search-button', class: 'btn btn-default' %>
+      <%= submit_tag "Submit Review", name: nil, id: 'submit-review', class: 'btn btn-default center' %>
 
     <% end %>
     </div>

@@ -21,7 +21,7 @@
         <td><%= taxi.id %></td>
         <td><%= link_to 'Show', user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-primary'%></td>
         <td><%= link_to 'Edit', edit_user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-primary' %></td>
-        <td><%= link_to 'Destroy', user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remove', user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -5,7 +5,6 @@
   <tr>
     <th>Question</th>
     <th>Response Type</th>
-    <th>Question ID</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,9 +15,9 @@
       <tr>
         <td><%= question.content %></td>
         <td><%= question.answer_type %></td>
-        <td><%= question.id%></td>
+
         <td><%= link_to 'Edit', edit_question_path(question), :class => 'btn btn-sm btn-primary'%></td>
-        <td><%= link_to 'Remove', question_path(question), method: :delete, data: { confirm: 'This will permanently remove this question and any answers to this question.  Are you sure?' }, :class => 'btn btn-sm btn-danger' %></td>
+        <td><%= link_to 'Remove', remove_question_path(@review, question), method: :post, data: { confirm: 'This will permanently remove this question and any answers that have been given to this question.  Are you sure?' }, :class => 'btn btn-sm btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

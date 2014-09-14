@@ -1,6 +1,7 @@
 RateMyTaxi::Application.routes.draw do
 
 
+  get "removals/question"
   root 'static_pages#home'
   devise_for :users
 
@@ -10,16 +11,20 @@ RateMyTaxi::Application.routes.draw do
     resources :taxis
   end
 
-  resources :questions, only: [:show, :edit, :update, :destroy]
+  resources :questions, only: [:show, :edit, :update, :destroy, :remove_question]
   resources :answers
 
-  #custom route for find_taxi
+  #custom route for find_taxi and submitting a review
   match '/survey/new', to: 'answers#new_answer_review', via: 'get'
   match '/survey/create', to: 'answers#create_answer_review', via: 'post'
 
+  #custom routes for graphs and total answer tallies
   match '/most_reviews/', to: 'taxis#most_reviews', via: 'get'
   match '/answer_graphs/', to: 'taxis#graphs', via: 'get'
   match '/review_comments/', to: 'taxis#comments', via: 'get'
+
+  #remove and review_id from question instead of permanently deleting it
+  match '/remove/:id/question/', to: 'reviews#remove_question', :as => 'remove_question', via: 'post'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

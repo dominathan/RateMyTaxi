@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
+  before_action :set_user, only: [:new, :created, :edit, :update, :show, :index]
 
   def new
     @review = Review.new
@@ -50,7 +50,10 @@ class ReviewsController < ApplicationController
 
   def remove_question
     @review = Review.find(params[:id])
-
+    @question = Question.find(params[:format])
+    @question.review_id = nil
+    @question.save
+    redirect_to user_review_path(current_user, @review)
   end
 
   private
