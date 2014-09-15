@@ -1,2 +1,0 @@
-module RemovalsHelper
-end

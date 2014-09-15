@@ -48,6 +48,8 @@ gem 'devise', '3.3.0'
 
 #nested_fields for reviews/questions
 gem 'cocoon', '1.2.6'
+
 gem 'highcharts-rails', '~> 4.0.1' #for highcharts.js
 gem 'faker' #for fake dummy data
-gem 'jquery-datatables-rails'
+gem 'jquery-datatables-rails' #beautiful tables
+gem 'rqrcode-with-patches', '~> 0.5.4' #for QR codes

@@ -1,10 +1,7 @@
 RateMyTaxi::Application.routes.draw do
 
-
-  get "removals/question"
   root 'static_pages#home'
   devise_for :users
-
 
   resources :users do
     resources :reviews
@@ -25,6 +22,11 @@ RateMyTaxi::Application.routes.draw do
 
   #remove and review_id from question instead of permanently deleting it
   match '/remove/:id/question/', to: 'reviews#remove_question', :as => 'remove_question', via: 'post'
+
+  #generate QR Code based on url for search + taxi_id
+  match '/create_qr_code/:id/', to: 'qr_codes#create_qr_code', :as => 'create_qr_code', via: 'get'
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

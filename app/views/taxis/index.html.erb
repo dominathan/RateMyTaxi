@@ -8,6 +8,7 @@
     <th>Driver Full Name</th>
     <th>Driver's License Number</th>
     <th>Generated Identification Number</th>
+    <th>Make QR Code</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +20,7 @@
         <td><%= Taxi.full_name(taxi) %></td>
         <td><%= taxi.driver_id %></td>
         <td><%= taxi.id %></td>
+        <td><%= link_to "QR Code", create_qr_code_path(taxi), :class => 'btn btn-sm btn-primary' %></td>
         <td><%= link_to 'Show', user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-primary'%></td>
         <td><%= link_to 'Edit', edit_user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-primary' %></td>
         <td><%= link_to 'Remove', user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
