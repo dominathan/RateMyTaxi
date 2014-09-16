@@ -11,8 +11,14 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     if @review.save
-      flash[:success] = "Review Created Successfully"
-      redirect_to user_reviews_path(current_user)
+      current_user.reviews.each do |rvw|
+        rvw.use_this_review = false
+        rvw.save
+      end
+      if @review.update_attributes(use_this_review: true)
+        flash[:success] = "Review Created Successfully"
+        redirect_to user_reviews_path(current_user)
+      end
     else
       render 'new'
     end
@@ -45,7 +51,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to user_review_path(current_user, @review)
+    redirect_to user_reviews_path(current_user)
   end
 
   def remove_question
@@ -56,6 +62,18 @@ class ReviewsController < ApplicationController
     redirect_to user_review_path(current_user, @review)
   end
 
+  def select_for_use
+    current_user.reviews.each do |rvw|
+      rvw.use_this_review = false
+      rvw.save
+    end
+    @review = Review.find(params[:id])
+    @review.use_this_review = true
+    @review.save
+    redirect_to user_reviews_path(current_user)
+  end
+
+
   private
 
     def set_user
@@ -63,7 +81,7 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-      params.require(:review).permit(:name, questions_attributes: [:id, :content, :answer_type])
+      params.require(:review).permit(:name, :use_this_review, questions_attributes: [:id, :content, :answer_type])
     end
 
 end

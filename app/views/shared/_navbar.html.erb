@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="#" class="navbar-brand" id="logobar">Rate My Taxi</a>
+      <a href="/" class="navbar-brand" id="logobar">Rate Your Cab</a>
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav pull-right">
@@ -15,7 +15,7 @@
           <li><%= link_to "Login", new_user_session_path %></li>
         <% else %>
           <% if current_user.reviews.first %>
-            <li><%= link_to "Review", user_review_path(current_user,current_user.reviews.first) %></li>
+            <li><%= link_to "Review", user_reviews_path(current_user) %></li>
           <% else %>
             <li><%= link_to "Create Review", new_user_review_path(current_user) %></li>
           <% end %>

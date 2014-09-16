@@ -1,9 +1,8 @@
-<h2><%= current_user.company_name %> Reviews</h2>
+<h2>Reviews | <%= current_user.company_name %> </h2>
 <table class='table table-hover'>
   <tr>
     <th>Review Name</th>
-    <th>ID</th>
-    <th></th>
+    <th>Make Default Review</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,11 +15,16 @@
         <% @reviews.each do |review| %>
           <tr>
             <td><%= review.name %></td>
-            <td><%= review.id %></td>
-            <td><%= %></td>
+
+            <% if review.use_this_review == true %>
+              <td><%= link_to 'Selected', "#", :class => 'btn btn-sm btn-success' %></td>
+            <% else %>
+              <td><%= link_to 'Pick', select_for_use_path(current_user, review), method: :post, :class => 'btn btn-sm btn-primary' %></td>
+            <% end %>
+
             <td><%= link_to 'Show', user_review_path(current_user, review), :class=>'btn btn-sm btn-primary' %></td>
             <td><%= link_to 'Edit', "#", :class => 'btn btn-sm btn-primary' %></td>
-            <td><%= link_to 'Destroy', user_review_path(current_user, review), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn-danger' %></td>
+            <td><%= link_to 'Delete', user_review_path(current_user, review), method: :delete, data: { confirm: 'You will no longer be able to use this review for your company.  Do you wish to continue?' }, :class => 'btn btn-sm btn-danger' %></td>
           </tr>
         <% end %>
       <% end %>
@@ -28,4 +32,7 @@
   </tr>
 </table>
 
+<div class='col-lg-6 col-lg-offset-5'>
+    <%= link_to "New Review", new_user_review_path(current_user), :class => 'btn btn-md btn-primary' %>
+</div>
 

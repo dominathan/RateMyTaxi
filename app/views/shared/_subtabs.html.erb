@@ -29,9 +29,6 @@
         <li class="<%=is_active_tab?('reviews','edit')%>">
           <%= link_to 'Add Questions', edit_user_review_path(current_user,@review) %>
         </li>
-        <li class="<%=is_active_tab?('reviews','new')%>">
-          <%= link_to "New Review", new_user_review_path(current_user) %>
-        </li>
         <li><%= link_to "Link to Phone View", "#" %></li>
 
       <% end %>

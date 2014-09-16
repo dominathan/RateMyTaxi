@@ -26,7 +26,8 @@ RateMyTaxi::Application.routes.draw do
   #generate QR Code based on url for search + taxi_id
   match '/create_qr_code/:id/', to: 'qr_codes#create_qr_code', :as => 'create_qr_code', via: 'get'
 
-
+  #select which review will show up to potential reviewers
+  match '/users/:user_id/review/:id/select_for_use', to: 'reviews#select_for_use', :as => 'select_for_use', via: 'post'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

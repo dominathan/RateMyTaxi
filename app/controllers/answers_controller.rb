@@ -1,16 +1,16 @@
 class AnswersController < ApplicationController
 
   def new_answer_review
-    begin
+    #begin
       Taxi.find(params[:search])
       @taxi = Taxi.find(params[:search])
-      @review = @taxi.user.reviews.last #most recent review? only allow one review? allow user to pick review?
+      @review = @taxi.user.reviews.where(use_this_review: true).take!
       @questions = @review.questions.to_a.sort
       @answer = Answer.new
-    rescue
-      flash[:error] = "Taxi not found. Please use the 6 digit code."
-      redirect_to root_path
-    end
+    #rescue
+      #flash[:error] = "Taxi not found. Please use the 6 digit code."
+      #redirect_to root_path
+    #end
   end
 
   #if a reviewer submits answers, only save the answers that have content
