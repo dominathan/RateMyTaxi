@@ -11,6 +11,5 @@
  *= require_self
  *= require dataTables/jquery.dataTables
  *= require bootstrap
- *= require bootstrap-datetimepicker
  *= require_tree .
  */
