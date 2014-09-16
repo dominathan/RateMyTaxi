@@ -12,10 +12,10 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     if @review.save
       current_user.reviews.each do |rvw|
-        rvw.use_this_review = false
+        rvw.use_this_review = 0
         rvw.save
       end
-      if @review.update_attributes(use_this_review: true)
+      if @review.update_attributes(use_this_review: 1)
         flash[:success] = "Review Created Successfully"
         redirect_to user_reviews_path(current_user)
       end
@@ -64,11 +64,11 @@ class ReviewsController < ApplicationController
 
   def select_for_use
     current_user.reviews.each do |rvw|
-      rvw.use_this_review = false
+      rvw.use_this_review = 0
       rvw.save
     end
     @review = Review.find(params[:id])
-    @review.use_this_review = true
+    @review.use_this_review = 1
     @review.save
     redirect_to user_reviews_path(current_user)
   end
