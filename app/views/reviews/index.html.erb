@@ -3,8 +3,7 @@
   <tr>
     <th>Review Name</th>
     <th>Make Default Review</th>
-    <th></th>
-    <th></th>
+    <th>Show Questions</th>
     <th></th>
   </tr>
   <tr>
@@ -23,7 +22,6 @@
             <% end %>
 
             <td><%= link_to 'Show', user_review_path(current_user, review), :class=>'btn btn-sm btn-primary' %></td>
-            <td><%= link_to 'Edit', "#", :class => 'btn btn-sm btn-primary' %></td>
             <td><%= link_to 'Delete', user_review_path(current_user, review), method: :delete, data: { confirm: 'You will no longer be able to use this review for your company.  Do you wish to continue?' }, :class => 'btn btn-sm btn-danger' %></td>
           </tr>
         <% end %>
@@ -33,6 +31,6 @@
 </table>
 
 <div class='col-lg-6 col-lg-offset-5'>
-    <%= link_to "New Review", new_user_review_path(current_user), :class => 'btn btn-md btn-primary' %>
+    <%= link_to "Create New Review", new_user_review_path(current_user), :class => 'btn btn-md btn-primary' %>
 </div>
 

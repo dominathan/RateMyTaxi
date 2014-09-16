@@ -21,6 +21,10 @@
                 <td><%= f.select :content, ["Yes","No"]%> </td>
               <% elsif q.answer_type == "1-5"%>
                 <td><%= f.select :content, ['1','2','3','4','5'] %> </td>
+              <% elsif q.answer_type == "Date" %>
+                <td><%= f.date_field :content %></td>
+              <% elsif q.answer_type == "Time" %>
+                <td><%= f.time_field :content %></td>
               <%end%>
               <!-- for taxi_id and question_id on submission -->
 
@@ -41,4 +45,12 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+
+  $(function() {
+    $('#timePicker').datetimepicker({
+    });
+  });
+</script>
 

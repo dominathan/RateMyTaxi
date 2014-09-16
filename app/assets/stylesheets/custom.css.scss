@@ -1,4 +1,7 @@
+
 @import 'bootstrap';
+@import 'bootstrap-datetimepicker';
+
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -176,6 +179,10 @@ $grayMediumLight: #eaeaea;
   .btn-primary {
     background-color: #1A5E94;
     color: #ffffff;
+  }
+
+  .btn {
+    color: #fff !important;
   }
 
   /* MISC */

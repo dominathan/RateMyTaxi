@@ -40,6 +40,8 @@ end
 
 #for styling
 gem 'bootstrap-sass', '3.1.1'
+#gem 'bootstrap3-datetimepicker-rails','~> 3.1.3'
+#gem 'momentjs-rails', '>=2.8.1'
 gem 'sprockets', '2.11.0'
 gem 'therubyracer', '0.12.1'
 
