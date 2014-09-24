@@ -43,7 +43,7 @@ namespace :db do
 
   desc 'make 1 Review'
   task populate: :environment do
-    Review.create!(name: 'Cville Cab Review',
+    Review.create!(name: 'Standard Template',
                     user_id: 1)
     Review.create!(name: 'Nathan Cab Review',
                     user_id: 2)
@@ -52,17 +52,17 @@ namespace :db do
   desc 'add 4 questions of each type to Review'
   task populate: :environment do
     Question.create!(review_id: 1,
-                      content: "How would you rate your overall taxi experience (5 being the highest)?",
+                      content: "What was the date of your cab ride?",
+                      answer_type: 'Date')
+    Question.create!(review_id: 1,
+                      content: "Approximately would time was your cab ride?",
+                      answer_type: 'Time')
+    Question.create!(review_id: 1,
+                      content: "How would you rate the appearance of your cab?",
                       answer_type: '1-5')
     Question.create!(review_id: 1,
-                      content: "How would you rate your driver (5 being the highest)?",
+                      content: "How would you rate your experience with your driver?",
                       answer_type: '1-5')
-    Question.create!(review_id: 1,
-                      content: "Did you make it to your destination on time?",
-                      answer_type: 'Yes/No')
-    Question.create!(review_id: 1,
-                      content: "Would you ride with us again?",
-                      answer_type: 'Yes/No')
     Question.create!(review_id: 1,
                       content: "Anything else you would like to add?",
                       answer_type: 'Text Response')

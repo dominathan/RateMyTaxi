@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/bmc/jquery-raty-rails.git
+  revision: f362f17c0ff3ac039ab05b5e48e5db24a27794b3
+  specs:
+    jquery-raty-rails (0.0.1)
+      rails (>= 3.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -255,6 +262,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-datatables-rails
   jquery-rails (= 3.0.4)
+  jquery-raty-rails!
   pg (= 0.17.1)
   pry
   railroady

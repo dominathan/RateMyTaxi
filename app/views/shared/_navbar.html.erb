@@ -15,7 +15,7 @@
           <li><%= link_to "Login", new_user_session_path %></li>
         <% else %>
          <li><%= link_to "Dashboard", user_taxis_path(current_user) %></li>
-          <% if current_user.reviews.first %>
+          <% if !current_user.reviews.empty? %>
             <li><%= link_to "Review", user_reviews_path(current_user) %></li>
           <% else %>
             <li><%= link_to "Create Review", new_user_review_path(current_user) %></li>

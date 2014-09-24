@@ -5,10 +5,10 @@
       <% if controller.controller_name == "taxis" %>
 
         <li class="<%=is_active_tab?('taxis','index')%>">
-          <%= link_to "All Taxis", user_taxis_path(current_user) %>
+          <%= link_to "All Vehicles", user_taxis_path(current_user) %>
         </li>
         <li class="<%=is_active_tab?('taxis','new')%>">
-          <%= link_to "Add Taxi", new_user_taxi_path(current_user) %>
+          <%= link_to "Add Vehicle", new_user_taxi_path(current_user) %>
         </li>
         <li class="<%=is_active_tab?('taxis','most_reviews')%>">
           <%= link_to 'Most Reviews', most_reviews_path %>

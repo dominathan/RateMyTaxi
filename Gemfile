@@ -55,3 +55,4 @@ gem 'highcharts-rails', '~> 4.0.1' #for highcharts.js
 gem 'faker' #for fake dummy data
 gem 'jquery-datatables-rails' #beautiful tables
 gem 'rqrcode-with-patches', '~> 0.5.4' #for QR codes
+gem 'jquery-raty-rails', github: 'bmc/jquery-raty-rails' #for star power!

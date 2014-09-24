@@ -5,8 +5,9 @@
 
     <%= form_tag survey_create_path, method: :post do %>
 
-
+        <% i = 1 %>
       <% for q in @questions %>
+
         <tr>
           <td><%= q.content %></td>
         </tr>
@@ -18,9 +19,11 @@
               <% elsif q.answer_type == "Number Response"%>
                 <td><%= f.text_area :content %> </td>
               <% elsif q.answer_type == "Yes/No"%>
-                <td><%= f.select :content, ["Yes","No"]%> </td>
+                <td><%= f.select :content, ["Yes","No"], prompt: "Please Select"%> </td>
               <% elsif q.answer_type == "1-5"%>
-                <td><%= f.select :content, ['1','2','3','4','5'] %> </td>
+                <!-- need to set 5 inline checkboxes ... selecting 5 stars on one changes all to 5 stars....-->
+                <td><%= f.select :content, ['1','2','3','4','5'] %></td>
+
               <% elsif q.answer_type == "Date" %>
                 <td><%= f.date_field :content %></td>
               <% elsif q.answer_type == "Time" %>
@@ -36,7 +39,7 @@
           <% end %>
         </tr>
         <br>
-
+        <%= i+=1 %>
       <% end %>
 
       <%= submit_tag "Submit Review", name: nil, id: 'submit-review', class: 'btn btn-default center' %>
@@ -46,11 +49,4 @@
   </div>
 </div>
 
-<script type="text/javascript">
-
-  $(function() {
-    $('#timePicker').datetimepicker({
-    });
-  });
-</script>
 

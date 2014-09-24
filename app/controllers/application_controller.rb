@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
     user_taxis_path(resource)
   end
 
+  # def after_sign_up_path_for(resource)
+  #   binding.pry
+  #   Review.initial_review(current_user)
+  # end
+
+
+
 end

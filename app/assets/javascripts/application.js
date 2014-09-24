@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
+//= require jquery.raty
+//= require jquery.raty.min
 //= require highcharts
 //= require highcharts/modules/exporting
 //= require cocoon

@@ -4,7 +4,7 @@
 <div class='container'>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h2> Add Taxi </h2>
+      <h2> Add Vehicle </h2>
         <%= form_for @taxi, url: {action: "create"} do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
         <table class="table">
@@ -23,7 +23,7 @@
 
         </table>
 
-        <%= f.submit "Create Taxi", class: "btn btn-large btn-primary" %>
+        <%= f.submit "Create", class: "btn btn-large btn-primary" %>
       <% end %>
     </div>
   </div>

@@ -59,6 +59,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def inital_review_for_new_user
+    binding.pry
+    Review.inital_review(current_user)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
