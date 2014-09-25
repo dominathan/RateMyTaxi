@@ -1,11 +1,10 @@
 <div class='container'>
   <div class="col-sm-6 col-sm-offset-3">
     <div class="content survey">
-    <h3><%= @review.name %></h3>
 
     <%= form_tag survey_create_path, method: :post do %>
 
-        <% i = 1 %>
+
       <% for q in @questions %>
 
         <tr>
@@ -39,7 +38,6 @@
           <% end %>
         </tr>
         <br>
-        <%= i+=1 %>
       <% end %>
 
       <%= submit_tag "Submit Review", name: nil, id: 'submit-review', class: 'btn btn-default center' %>

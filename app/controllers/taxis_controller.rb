@@ -66,8 +66,8 @@ class TaxisController < ApplicationController
   end
 
   def index
-    #if new user, create standard template review
-    if current_user.reviews.empty?
+    #if new user, create standard template review...better
+    if current_user.reviews.empty? && current_user.sign_in_count == 1
       Review.initial_review(current_user)
     end
     @taxis = @user.taxis.load
