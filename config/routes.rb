@@ -1,10 +1,7 @@
 RateMyTaxi::Application.routes.draw do
 
   root 'static_pages#home'
-  devise_for :users do
-    get '/new_review', to: 'users#initial_review_for_new_user', as: 'initial_review_for_new_user'
-  end
-
+  devise_for :users
 
   resources :users do
     resources :reviews
