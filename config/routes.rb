@@ -20,6 +20,7 @@ RateMyTaxi::Application.routes.draw do
   match '/most_reviews/', to: 'taxis#most_reviews', via: 'get'
   match '/answer_graphs/', to: 'taxis#graphs', via: 'get'
   match '/review_comments/', to: 'taxis#comments', via: 'get'
+  match '/highest_rated/', to: 'taxis#highest_rated', via: 'get'
 
   #remove and review_id from question instead of permanently deleting it
   match '/remove/:id/question/', to: 'reviews#remove_question', :as => 'remove_question', via: 'post'

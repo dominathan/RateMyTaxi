@@ -37,4 +37,26 @@ class Taxi < ActiveRecord::Base
     return taxi_sorted_by_total_answers
   end
 
+  #return the avg rating of a taxi driver based on the collected ratings of all questions
+    #with answer_type == 1-5
+  def self.highest_rated_driver(user)
+    taxi_list = user.company.taxis.collect(&:id)
+    question_list = Question.array_of_numerical_questions(user)
+    total_count = []
+    for taxi in taxi_list
+      all_answers = Answer.where(question_id: question_list, taxi_id: taxi).collect(&:content).map(&:to_i)
+      total_value = all_answers.inject(0, :+)
+      if all_answers.length > 0
+        avg_rating = (total_value.to_f / all_answers.length).round(1)
+      else
+        #skip taxis with 0 answers to questions
+        next
+      end
+      total_count << avg_rating
+    end
+    taxi_with_avg_rating = total_count.zip(taxi_list)
+    return taxi_with_avg_rating
+  end
+
+
 end

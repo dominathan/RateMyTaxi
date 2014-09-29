@@ -89,6 +89,10 @@ class TaxisController < ApplicationController
     @top_five = Taxi.most_review_answers(current_user)
   end
 
+  def highest_rated
+    @taxis = Taxi.highest_rated_driver(current_user)
+  end
+
   #All User Questions with either 1-5 or Yes/No answer types
     #are generated as bar graphs, summing the counts of the answers
     #and displaying them in aggregate for all taxis

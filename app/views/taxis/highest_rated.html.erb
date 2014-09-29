@@ -1,0 +1,33 @@
+<%= @taxis %>
+
+<h2>Dashboard | <%= current_user.company.name %></h2>
+<%= render 'shared/subtabs' %>
+<br>
+
+<table id="highestRated" class="display" cellspacing="0" width="100%">
+  <thead>
+  <tr>
+    <th>Average Rating</th>
+    <th>Driver ID</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @taxis.each do |taxi| %>
+    <tr>
+      <td><%= taxi[0] %></td>
+      <td><%= Taxi.find_by(id: taxi[1]).driver_id %></td>
+      <td><%= link_to "Show", user_taxi_path(current_user, Taxi.find_by(id: taxi[1])),
+                :class => 'btn btn-sm btn-primary' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#highestRated').dataTable({
+      "order": [[0, 'desc']]
+    });
+  });
+</script>

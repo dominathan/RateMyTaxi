@@ -13,7 +13,9 @@
         <li class="<%=is_active_tab?('taxis','most_reviews')%>">
           <%= link_to 'Most Reviews', most_reviews_path %>
         </li>
-        <li class=""><a href="#">Highest Rated</a></li>
+        <li class="<%=is_active_tab?('taxis','highest_rated')%>">
+          <%= link_to "Highest Rated", highest_rated_path %>
+        </li>
         <li class="<%=is_active_tab?('taxis','graphs')%>">
           <%= link_to "Review Totals (Graphs)", answer_graphs_path %>
         </li>
