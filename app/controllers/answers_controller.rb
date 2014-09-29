@@ -2,13 +2,12 @@ class AnswersController < ApplicationController
 
   def new_answer_review
     begin
-      Taxi.find(params[:search])
       @taxi = Taxi.find(params[:search])
       @review = @taxi.user.reviews.where(use_this_review: true).take!
       @questions = @review.questions.to_a.sort
       @answer = Answer.new
     rescue
-      flash[:error] = "Taxi not found. Please use the 6 digit code."
+      flash[:error] = "Taxi not found. Please use the 6 digit code located on the sticker, or scan the QR Code."
       redirect_to root_path
     end
   end
@@ -25,7 +24,8 @@ class AnswersController < ApplicationController
         answer.save
       end
     end
-    redirect_to root_path
+    #carry taxi_id to store Rider information with correct company
+    redirect_to new_rider_path(:company_id => Rider.get_company_id(params[:taxi_carryover]))
   end
 
   def index

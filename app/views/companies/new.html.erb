@@ -4,7 +4,6 @@
 <div class='container'>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h2> Add Vehicle </h2>
         <%= form_for @company, url: {action: "create"} do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
         <table class="table">
@@ -28,7 +27,6 @@
             <td><%= f.label "Zip Code:" %></td>
             <td><%= f.text_field :zipcode %></td>
           </tr>
-          <h2>Contact Information</h2>
           <tr>
             <td><%= f.label "Name of Contact:" %></td>
             <td><%= f.text_field :contact_person %></td>

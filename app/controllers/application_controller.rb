@@ -4,14 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
-    user_taxis_path(resource)
+    if current_user.company_id == nil
+      new_company_path
+    else
+      user_taxis_path(resource)
+    end
   end
-
-  # def after_sign_up_path_for(resource)
-  #   binding.pry
-  #   Review.initial_review(current_user)
-  # end
-
-
 
 end

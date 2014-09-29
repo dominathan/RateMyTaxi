@@ -14,12 +14,12 @@ class TaxisController < ApplicationController
     Taxi.set_taxi_id(Taxi::IDLIST, @taxi)
     if @taxi.save
       if current_user.taxi_count == nil
-        current_user.taxi_count =1
+        current_user.taxi_count = 1
       else
         current_user.taxi_count += 1
       end
       current_user.save
-      flash[:success] = "Taxi Added Successfully"
+      flash[:success] = "Vehicle Added Successfully"
       redirect_to user_taxis_path(current_user)
     else
       render 'new'
@@ -33,7 +33,7 @@ class TaxisController < ApplicationController
   def update
     @taxi = Taxi.find(params[:id])
     if @taxi.update_attributes(taxi_params)
-      flash[:success] = "Taxi Updated Successfully"
+      flash[:success] = "Vehicle Updated Successfully"
       redirect_to user_taxis_path(current_user)
     else
       render 'edit'
@@ -70,7 +70,7 @@ class TaxisController < ApplicationController
     if current_user.reviews.empty? && current_user.sign_in_count == 1
       Review.initial_review(current_user)
     end
-    @taxis = @user.taxis.load
+    @taxis = @user.company.taxis.load
   end
 
   def destroy
@@ -122,6 +122,6 @@ class TaxisController < ApplicationController
     end
 
     def taxi_params
-      params.require(:taxi).permit(:driver_first_name, :driver_last_name, :driver_id)
+      params.require(:taxi).permit(:company_vehicle_number, :license_plate, :driver_id)
     end
 end

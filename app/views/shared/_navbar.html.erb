@@ -14,13 +14,11 @@
         <% if !current_user %>
           <li><%= link_to "Login", new_user_session_path %></li>
         <% else %>
-         <li><%= link_to "Dashboard", user_taxis_path(current_user) %></li>
-          <% if !current_user.reviews.empty? %>
+          <% if current_user.company %>
+            <li><%= link_to "Dashboard", user_taxis_path(current_user) %></li>
             <li><%= link_to "Review", user_reviews_path(current_user) %></li>
-          <% else %>
-            <li><%= link_to "Create Review", new_user_review_path(current_user) %></li>
+            <li><%= link_to "Edit Profile", edit_company_path(current_user.company) %></li>
           <% end %>
-          <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete%></li>
         <% end %>
       </ul>

@@ -1,0 +1,25 @@
+<div class='container'>
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="content survey">
+      <tr><td>If you would like to sign up to receive promotions, news, discounts and a special chance to win a free ride, leave your name and email below</td> </tr>
+        <%= form_for @rider, url: {action: "create"} do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+
+          <div class='input-group'>
+            <tr>
+              <td><%= f.label "Name:" %></td>
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "Email:" %></td>
+              <td><%= f.text_field :email %></td>
+            </tr>
+          </div>
+            <%= f.hidden_field :company_id, :value => params[:company_id] %>
+
+        <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

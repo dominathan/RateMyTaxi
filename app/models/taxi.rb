@@ -4,10 +4,6 @@ class Taxi < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :driver_id, presence: true
-  validates :driver_first_name, presence: true
-  validates :driver_last_name, presence: true
-
-
 
   #master list of all taxi ids
   IDLIST = Taxi.all.collect(&:id)

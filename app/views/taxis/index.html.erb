@@ -1,12 +1,13 @@
-<h2>Dashboard | <%= current_user.company_name ? current_user.company_name : "" %></h2>
+<h2>Dashboard | <%= current_user.company.name %></h2>
 
 <%= render 'shared/subtabs' %>
 
 <table table id="allTaxis" class="display" cellspacing="0" width="100%">
   <thead>
   <tr>
-    <th>Driver Full Name</th>
-    <th>Driver's License Number</th>
+    <th>Driver ID</th>
+    <th>License Plate Number</th>
+    <th>Company Vehicle Number</th>
     <th>Generated Identification Number</th>
     <th>Make QR Code</th>
     <th></th>
@@ -17,9 +18,10 @@
   <tbody>
     <% @taxis.each do |taxi| %>
       <tr>
-        <td><%= Taxi.full_name(taxi) %></td>
-        <td><%= taxi.driver_id %></td>
-        <td><%= taxi.id %></td>
+        <td><%= taxi.driver_id ? taxi.driver_id : "" %></td>
+        <td><%= taxi.license_plate ? taxi.license_plate : "" %></td>
+        <td><%= taxi.company_vehicle_number ? taxi.company_vehicle_number : "" %></td>
+        <td><%= taxi.id ? taxi.id : "" %></td>
         <td><%= link_to "QR Code", create_qr_code_path(taxi), :class => 'btn btn-sm btn-primary' %></td>
         <td><%= link_to 'Show', user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-primary'%></td>
         <td><%= link_to 'Edit', edit_user_taxi_path(current_user, taxi), :class => 'btn btn-sm btn-primary' %></td>

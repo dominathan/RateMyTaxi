@@ -8,8 +8,9 @@ RateMyTaxi::Application.routes.draw do
     resources :taxis
   end
 
+  resources :companies
   resources :questions, only: [:show, :edit, :update, :destroy, :remove_question]
-  resources :answers
+  resources :riders, only: [:new, :create]
 
   #custom route for find_taxi and submitting a review
   match '/survey/new', to: 'answers#new_answer_review', via: 'get'
@@ -28,6 +29,9 @@ RateMyTaxi::Application.routes.draw do
 
   #select which review will show up to potential reviewers
   match '/users/:user_id/review/:id/select_for_use', to: 'reviews#select_for_use', :as => 'select_for_use', via: 'post'
+
+
+  #to submit rider information for news, updates, chance to win
 
 
   # The priority is based upon order of creation: first created -> highest priority.
