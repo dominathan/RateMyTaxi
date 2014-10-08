@@ -84,9 +84,9 @@ class TaxisController < ApplicationController
     redirect_to user_taxis_path(current_user)
   end
 
-  #find taxis that have received the most reviews, and sort them in order 1-5
+  #find taxis that have received the most reviews, and sort them in order
   def most_reviews
-    @top_five = Taxi.most_review_answers(current_user)
+    @top_five = Taxi.most_review_answers(current_user, params)
   end
 
   def highest_rated

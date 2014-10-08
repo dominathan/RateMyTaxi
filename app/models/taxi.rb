@@ -26,14 +26,20 @@ class Taxi < ActiveRecord::Base
     [user.driver_first_name, user.driver_last_name].compact.join(" ")
   end
 
-  #return list of taxis with number of answers received
-  def self.most_review_answers(user)
+  #return list of taxis with number of answers received(date-range optional)
+  def self.most_review_answers(user, options = {})
     taxi_list = user.taxis.collect!(&:id)
     total_count = []
+    date_start = options["date_start"].to_date.beginning_of_day unless options['date_start'] == nil
+    date_end = options["date_end"].to_date.end_of_day unless options['date_end'] == nil
     for taxi in taxi_list
-      total_count << Answer.where(taxi_id: taxi).count
+      unless options['date_start'] == nil
+        total_count << Answer.where(taxi_id: taxi).where(:created_at => date_start..date_end).count
+      else
+        total_count << Answer.where(taxi_id: taxi).count
+      end
     end
-    taxi_sorted_by_total_answers = total_count.zip(taxi_list).sort
+    taxi_sorted_by_total_answers = total_count.zip(taxi_list)
     return taxi_sorted_by_total_answers
   end
 

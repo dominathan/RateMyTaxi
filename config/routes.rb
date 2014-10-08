@@ -18,6 +18,8 @@ RateMyTaxi::Application.routes.draw do
 
   #custom routes for graphs and total answer tallies
   match '/most_reviews/', to: 'taxis#most_reviews', via: 'get'
+  match '/most_reviews/date_range', to: 'taxis#most_reviews', via: 'get'
+
   match '/answer_graphs/', to: 'taxis#graphs', via: 'get'
   match '/review_comments/', to: 'taxis#comments', via: 'get'
   match '/highest_rated/', to: 'taxis#highest_rated', via: 'get'
