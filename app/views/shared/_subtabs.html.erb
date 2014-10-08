@@ -2,13 +2,13 @@
   <div class="row">
     <ul class="nav nav-tabs nav-justified" role="tablist">
 
-      <% if controller.controller_name == "taxis" %>
+      <% if controller.controller_name == "taxis" || controller.controller_name == "riders"%>
 
         <li class="<%=is_active_tab?('taxis','index')%>">
           <%= link_to "All Vehicles", user_taxis_path(current_user) %>
         </li>
-        <li class="<%=is_active_tab?('taxis','new')%>">
-          <%= link_to "Add Vehicle", new_user_taxi_path(current_user) %>
+        <li class="<%=is_active_tab?('riders','all_customers')%>">
+          <%= link_to "Customer Info", customers_path %>
         </li>
         <li class="<%=is_active_tab?('taxis','most_reviews')%>">
           <%= link_to 'Most Reviews', most_reviews_path %>

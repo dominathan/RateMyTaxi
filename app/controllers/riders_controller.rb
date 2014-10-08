@@ -14,6 +14,10 @@ class RidersController < ApplicationController
     end
   end
 
+  def all_customers
+    @riders = Rider.where(company_id: current_user.company_id)
+  end
+
   private
 
     def rider_params

@@ -24,7 +24,9 @@
 <br>
 <br>
 
-<%= render 'shared/date_range' %>
+<%= form_tag most_reviews_date_range_path, method: :get do %>
+  <%= render 'shared/date_range' %>
+<% end %>
 
 <script type="text/javascript">
   $(document).ready(function() {

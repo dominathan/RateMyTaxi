@@ -90,7 +90,7 @@ class TaxisController < ApplicationController
   end
 
   def highest_rated
-    @taxis = Taxi.highest_rated_driver(current_user)
+    @taxis = Taxi.highest_rated_driver(current_user, params)
   end
 
   #All User Questions with either 1-5 or Yes/No answer types

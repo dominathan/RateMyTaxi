@@ -22,7 +22,9 @@ RateMyTaxi::Application.routes.draw do
 
   match '/answer_graphs/', to: 'taxis#graphs', via: 'get'
   match '/review_comments/', to: 'taxis#comments', via: 'get'
+
   match '/highest_rated/', to: 'taxis#highest_rated', via: 'get'
+  match '/highest_rated/date_range', to: 'taxis#highest_rated', via: 'get'
 
   #remove and review_id from question instead of permanently deleting it
   match '/remove/:id/question/', to: 'reviews#remove_question', :as => 'remove_question', via: 'post'
@@ -33,9 +35,8 @@ RateMyTaxi::Application.routes.draw do
   #select which review will show up to potential reviewers
   match '/users/:user_id/review/:id/select_for_use', to: 'reviews#select_for_use', :as => 'select_for_use', via: 'post'
 
-
-  #to submit rider information for news, updates, chance to win
-
+  #get all customers information
+  match 'customers', to: 'riders#all_customers', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

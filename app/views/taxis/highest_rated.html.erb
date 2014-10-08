@@ -22,6 +22,10 @@
   </tbody>
 </table>
 
+<%= form_tag highest_rated_date_range_path, method: :get do %>
+  <%= render 'shared/date_range' %>
+<% end %>
+
 <script type="text/javascript">
   $(document).ready(function() {
     $('#highestRated').dataTable({

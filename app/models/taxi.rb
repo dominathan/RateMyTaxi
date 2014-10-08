@@ -26,7 +26,7 @@ class Taxi < ActiveRecord::Base
     [user.driver_first_name, user.driver_last_name].compact.join(" ")
   end
 
-  #return list of taxis with number of answers received(date-range optional)
+  #return list of taxis with number of answers received(date-range options = {})
   def self.most_review_answers(user, options = {})
     taxi_list = user.taxis.collect!(&:id)
     total_count = []
@@ -44,19 +44,33 @@ class Taxi < ActiveRecord::Base
   end
 
   #return the avg rating of a taxi driver based on the collected ratings of all questions
-    #with answer_type == 1-5
-  def self.highest_rated_driver(user)
+    #with answer_type == 1-5 (date-range is options = {})
+  def self.highest_rated_driver(user, options = {})
     taxi_list = user.company.taxis.collect(&:id)
+    date_start = options["date_start"].to_date.beginning_of_day unless options['date_start'] == nil
+    date_end = options["date_end"].to_date.end_of_day unless options['date_end'] == nil
     question_list = Question.array_of_numerical_questions(user)
     total_count = []
     for taxi in taxi_list
-      all_answers = Answer.where(question_id: question_list, taxi_id: taxi).collect(&:content).map(&:to_i)
-      total_value = all_answers.inject(0, :+)
-      if all_answers.length > 0
-        avg_rating = (total_value.to_f / all_answers.length).round(1)
+      unless options['date_start'] == nil
+        all_answers = Answer.where(question_id: question_list, taxi_id: taxi).where(:created_at =>
+                                                          date_start..date_end).collect(&:content).map(&:to_i)
+        total_value = all_answers.inject(0, :+)
+        if all_answers.length > 0
+          avg_rating = (total_value.to_f / all_answers.length).round(1)
+        else
+          #skip taxis with 0 answers to questions
+          avg_rating = 0
+        end
       else
-        #skip taxis with 0 answers to questions
-        next
+        all_answers = Answer.where(question_id: question_list, taxi_id: taxi).collect(&:content).map(&:to_i)
+        total_value = all_answers.inject(0, :+)
+        if all_answers.length > 0
+          avg_rating = (total_value.to_f / all_answers.length).round(1)
+        else
+          #skip taxis with 0 answers to questions
+          avg_rating = 0
+        end
       end
       total_count << avg_rating
     end
